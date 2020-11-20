@@ -17,3 +17,4 @@ Tässä on aluksi muutama oleellinen toimiva komento:
 
 ## Definition of done
 Ominaisuus on määritelty ja suunniteltu. Ominaisuus on ohjelmoitu sekä testattu automaattisesti ja manuaalisesti. Ominaisuus on integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön.
+[Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
