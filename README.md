@@ -1,8 +1,6 @@
 # NextBook
 
-
-https://github.com/okkokuisma/NextBook/workflows/Java%20CI%20with%20Gradle/badge.svg
-
+![GitHub Actions](https://github.com/okkokuisma/NextBook/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
 NextBook on ohjelma jolla voidaan pitää yllä lukuvinkkikirjastoa.
 
