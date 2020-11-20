@@ -36,6 +36,7 @@ public class Ui {
                 String author = sc.nextLine();
                 Clue book = new Book(name, author);
                 clueService.createClue(book);
+                System.out.println("New book added");
             }
 
             if (command.equals("list")) {
