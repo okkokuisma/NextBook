@@ -14,6 +14,10 @@ import nextbook.domain.Clue;
  */
 public class InMemoryDao implements ClueDao {
     ArrayList<Clue> clues;
+
+    public InMemoryDao() {
+        clues = new ArrayList();
+    }
     
     @Override
     public void create(Clue clue) {
