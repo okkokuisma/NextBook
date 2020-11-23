@@ -20,7 +20,8 @@ Tässä on aluksi muutama oleellinen toimiva komento:
 Ominaisuus on määritelty ja suunniteltu. Ominaisuus on ohjelmoitu sekä testattu automaattisesti ja manuaalisesti. Ominaisuus on integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön.
 
 ## Backlogit
-Linkki tähän.
+[Backlog](https://docs.google.com/spreadsheets/d/17YigkVBiU9ZP-Sr4drDUlFHofHq0yx_idhqHz0ZpjKY/edit?usp=sharing)
+
 
 ## Käyttöohje
 Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/kayttoohje.md).
@@ -28,4 +29,3 @@ Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/Nex
 
 [Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
 
-[Backlog](https://docs.google.com/spreadsheets/d/17YigkVBiU9ZP-Sr4drDUlFHofHq0yx_idhqHz0ZpjKY/edit?usp=sharing)
