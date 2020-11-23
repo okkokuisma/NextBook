@@ -27,3 +27,5 @@ Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/Nex
 
 
 [Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
+
+[Backlog](https://docs.google.com/spreadsheets/d/17YigkVBiU9ZP-Sr4drDUlFHofHq0yx_idhqHz0ZpjKY/edit?usp=sharing)
