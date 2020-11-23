@@ -18,4 +18,11 @@ Tässä on aluksi muutama oleellinen toimiva komento:
 ## Definition of done
 Ominaisuus on määritelty ja suunniteltu. Ominaisuus on ohjelmoitu sekä testattu automaattisesti ja manuaalisesti. Ominaisuus on integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön.
 
+## Backlogit
+Linkki tähän.
+
+## Käyttöohje
+Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/kayttoohje.md).
+
+
 [Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
