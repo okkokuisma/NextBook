@@ -12,5 +12,10 @@ public class Video extends Clue {
         this.time = time;
     }
 
+    @Override
+    public String toString() {
+        return "name=" + name + ", link=" + link + ", time=" + time;
+    }
+
 }
 
