@@ -20,10 +20,10 @@ public class Ui {
     }
 
     public void start() {
-        io.print("Give 'add' to add book");
+        io.print("Give 'add book' to add book");
+        io.print("Give 'add video' to add video");
         io.print("Give 'list' to list books");
         io.print("Give empty line to exit program");
-
         while (true) {
             io.print("");
             String command = io.nextLine();
@@ -31,24 +31,32 @@ public class Ui {
                 break;
             }
 
-            if (command.equals("add")) {
+            if (command.equals("add book")) {
                 String name = io.readLine("Give name of the book");
-                //io.print("Give name of the book");
-                //String name = sc.nextLine();
                 String author = io.readLine("Give author of the book");
-                //io.print("Give author of the book");
-                //String author = sc.nextLine();
+                String isbn = io.readLine("Give ISBN of the book");
+                int year = io.readLine("Give year of publish of the book");
+                String comment = io.readLine("Give comments to the book (all in one line)");
+
                 Clue book = new Book(name, author);
                 clueService.createClue(book);
                 io.print("New book added");
-                //System.out.println("New book added");
+            }
+
+            if (command.equals("add video")) {
+                String name = io.readLine("Give name of the video");
+                String link = io.readLine("Give link to the video");
+                int startTime= Integer.parseInt(io.readLine("Give starting time of part of the video (in seconds)"));
+
+                Clue book = new Video(name, link, startTime);
+                clueService.createClue(book);
+                System.out.println("New book added");
             }
 
             if (command.equals("list")) {
                 ArrayList<Clue> clues = clueService.readClues();
                 for (Clue c: clues) {
                     io.print(c);
-                    //System.out.println(c);
                 }
             }
 
