@@ -6,14 +6,13 @@ import nextbook.dao.ClueDao;
 import nextbook.dao.InMemoryDao;
 
 import java.util.Scanner;
-import static nextbook.dao.SqlClueDao.connect;
+import nextbook.dao.SqlClueDao;
 
 public class Main {
 
     public static void main(String[] args) {
-        connect();
         Scanner sc = new Scanner(System.in);
-        ClueDao dao = new InMemoryDao();
+        ClueDao dao = new SqlClueDao();
         ClueService clueService = new ClueService(dao);
 
         Ui commandlineUi = new Ui(sc, clueService);
