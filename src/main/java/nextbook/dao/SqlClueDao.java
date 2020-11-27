@@ -13,13 +13,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import nextbook.domain.Book;
 import nextbook.domain.Clue;
+import nextbook.domain.Video;
 
 public class SqlClueDao implements ClueDao {
     SqlBookDao bookDao;
+    SqlVideoDao videoDao;
     
     public SqlClueDao() {
         bookDao = new SqlBookDao();
+        videoDao = new SqlVideoDao();
         Connection dbconn = null;
+        
         try {
             dbconn = DriverManager.getConnection("jdbc:sqlite:NextBook.db");
             Statement s = dbconn.createStatement();
@@ -38,24 +42,30 @@ public class SqlClueDao implements ClueDao {
                     + "time TEXT)");
 
             dbconn.close();
+            System.out.println("Opened database successfully");
         } catch (Exception e) {
+            System.out.println("Error while opening the database");
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
-        }  
-        
-        System.out.println("Opened database successfully");
+        }   
     }
 
     @Override
     public void create(Clue clue) {
         if (clue instanceof Book) {
             bookDao.create((Book) clue);
+        } else if (clue instanceof Video) {
+            videoDao.create((Video) clue);
         }
     }
 
     @Override
     public ArrayList getAll() {
-        return bookDao.getAll();
+        ArrayList<Clue> clues = new ArrayList<>();
+        clues.addAll(bookDao.getAll());
+        clues.addAll(videoDao.getAll());
+        
+        return clues;
     }
 
 }

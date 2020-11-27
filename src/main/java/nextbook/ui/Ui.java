@@ -23,7 +23,7 @@ public class Ui {
     public void start() {
         io.print("Give 'add book' to add book");
         io.print("Give 'add video' to add video");
-        io.print("Give 'list' to list books");
+        io.print("Give 'list' to list all recommendations");
         io.print("Give empty line to exit program");
         while (true) {
             io.print("");
