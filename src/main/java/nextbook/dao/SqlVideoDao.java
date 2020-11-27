@@ -14,24 +14,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import nextbook.domain.Book;
+import nextbook.domain.Video;
 
 /**
  *
  * @author okkokuisma
  */
-public class SqlBookDao {
+public class SqlVideoDao {
     Connection dbconn;
     
-    public void create(Book book) {
+    public void create(Video video) {
         try {
             connect();
-            PreparedStatement ps = dbconn.prepareStatement("INSERT INTO books (name,author,isbn,comment,year) VALUES (?,?,?,?,?)");
-            ps.setString(1, book.getName());
-            ps.setString(2, book.getAuthor());
-            ps.setString(3, book.getIsbn());
-            ps.setString(4, book.getComment());
-            ps.setInt(5, book.getYearPublished());
+            PreparedStatement ps = dbconn.prepareStatement("INSERT INTO videos (name,url,time) VALUES (?,?,?)");
+            ps.setString(1, video.getName());
+            ps.setString(2, video.getLink());
+            ps.setInt(3, video.getTime());
             ps.execute();
             
             dbconn.close();
@@ -44,20 +42,18 @@ public class SqlBookDao {
         try {
             connect();
             Statement ps = dbconn.createStatement();
-            ResultSet queryResults = ps.executeQuery("SELECT name, author, isbn, comment, year FROM books");
+            ResultSet queryResults = ps.executeQuery("SELECT name, url, time FROM videos");
             
-            ArrayList<Book> books = new ArrayList<>();
+            ArrayList<Video> videos = new ArrayList<>();
             while (queryResults.next()) {
-                Book book = new Book(queryResults.getString(1),
+                Video video = new Video(queryResults.getString(1),
                         queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getString(4),
-                        queryResults.getInt(5));
-                books.add(book);
+                        queryResults.getInt(3));
+                videos.add(video);
             }
             
             dbconn.close();
-            return books;
+            return videos;
         } catch (SQLException ex) {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
