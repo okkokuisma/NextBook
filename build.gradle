@@ -40,7 +40,7 @@ jacocoTestReport {
     }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['nextbook/Main.java'])
+            fileTree(dir: it, exclude: ['Main.java'])
         }))
     }
 }
