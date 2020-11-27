@@ -1,4 +1,6 @@
-public class Video {
+package nextbook.domain;
+
+public class Video extends Clue {
 
     private String name;
     private String link;
