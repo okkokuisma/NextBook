@@ -44,7 +44,7 @@ public class SqlBookDao {
         try {
             connect();
             Statement ps = dbconn.createStatement();
-            ResultSet queryResults = ps.executeQuery("SELECT books FROM Courses");
+            ResultSet queryResults = ps.executeQuery("SELECT name, author, isbn, comment, year FROM books");
             
             ArrayList<Book> books = new ArrayList<>();
             while (queryResults.next()) {
