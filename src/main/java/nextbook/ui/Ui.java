@@ -49,9 +49,9 @@ public class Ui {
                 String link = io.readLine("Give link to the video");
                 int startTime = io.readInt("Give starting time of part of the video (in seconds)");
 
-                Clue book = new Video(name, link, startTime);
-                clueService.createClue(book);
-                System.out.println("New book added");
+                Clue video = new Video(name, link, startTime);
+                clueService.createClue(video);
+                System.out.println("New video added");
             }
 
             if (command.equals("list")) {
