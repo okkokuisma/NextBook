@@ -27,6 +27,8 @@ public class Ui {
     }
 
     public void start() {
+        System.out.println("start");
+        
         io.print("Give 'add' to add book or video");
         io.print("Give 'list' to list all recommendations");
         io.print("Give 'update' to update information of clue");
@@ -38,7 +40,8 @@ public class Ui {
             io.print("");
             String command = io.nextLine();
             if (command.isEmpty()) {
-                exit.execute();
+                //exit.execute();
+                break;
             }
 
             if (command.equals("add")) {

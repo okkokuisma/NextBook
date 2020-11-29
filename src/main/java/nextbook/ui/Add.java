@@ -40,7 +40,7 @@ public class Add extends Command {
 
             Clue video = new Video(name, link, startTime);
             clueService.createClue(video);
-            System.out.println("New video added");
+            io.print("New video added");
         }
 
     }

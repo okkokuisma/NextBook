@@ -7,8 +7,6 @@ import io.cucumber.java.en.Then;
 import java.util.ArrayList;
 import java.util.List;
 import nextbook.dao.ClueDao;
-import nextbook.domain.Book;
-import nextbook.domain.Clue;
 import nextbook.domain.ClueService;
 import nextbook.io.StubIO;
 import nextbook.ui.Ui;
@@ -29,46 +27,43 @@ public class Stepdefs {
         this.inputLines = new ArrayList<>();
     }
    
-
-    @Given("command add book is selected")
-    public void commandAddBookIsSelected() {
-        inputLines.add("add book");
+    @Given("command add is selected")
+    public void commandAddIsSelected() {
+        inputLines.add("add");
     }
     
-    @Given("command add video is selected")
-    public void commandAddVideoIsSelected() {
-        inputLines.add("add video");
+    @Given("command {string} is selected")
+    public void commandIsSelected(String type) {
+        inputLines.add(type);
     }
     
     @Given("command list is selected")
     public void commandListIsSelected() {
         inputLines.add("list");
-        io = new StubIO(inputLines);
-        ui = new Ui(io, service);
-        ui.start();
-    }
-    
-    @Given("clue {string} with author {string} is created")
-    public void clueWithAuthorIsCreated(String name, String author) {
-        service.createClue(new Book(name, author));
+        uiStart();
     }
     
     @Given("book {string} with author {string} and with isbn {string}, year {string} and comment {string} is created")
     public void bookWithAuthorAndWithIsbnYearAndCommentIsCreated(String name, String author, String isbn, String year, String comment) {
-        inputLines.add("add book");
+        inputLines.add("add");
+        inputLines.add("1");
         addBooksVariables(name, author, isbn, year, comment);
     }
     
     @Given("video {string} with link {string} and time {string} is created")
     public void videoWithLinkAndTimeIsCreated(String name, String link, String time) {
-        inputLines.add("add video");
+        inputLines.add("add");
+        inputLines.add("2");
         addVideoVariables(name, link, time);
     }
     
     @When("a valid name {string}, author {string}, isbn {string}, year {string} and comment {string} are entered")
     public void aValidNameAuthorIsbnYearAndCommentAreEntered(String name, String author, String isbn, String year, String comment) {
         addBooksVariables(name, author, isbn, year, comment);
-        uiStart();
+        System.out.println("mmmm" + this.inputLines);
+        io = new StubIO(inputLines);
+        ui = new Ui(io, service);
+        ui.start();
     }
     
     @When("a valid name {string}, link {string} and time {string} are entered")
@@ -76,24 +71,18 @@ public class Stepdefs {
         addVideoVariables(name, link, time);
         uiStart();
     }
-
+    
+    @Then("system will response with {string}")
+    public void systemWillResponseWith(String expectedOutput) {
+        System.out.println("lines" + this.inputLines);
+        System.out.println("output" + io.getPrints());
+        assertTrue(io.getPrints().contains(expectedOutput));
+    }
+    
     @Then("system will response with {string} and {string}")
     public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2) {
         assertTrue(io.getPrints().contains(expectedOutput1));
         assertTrue(io.getPrints().contains(expectedOutput2));
-    }
-    
-    @Then("system will response with {string}")
-    public void systemWillResponseWith(String expectedOutput) {
-        assertTrue(io.getPrints().contains(expectedOutput));
-    }
-    
-    @Then("correct data can be seen")
-    public void correctDataCanBeSeen() {
-        ArrayList<Clue> clues = service.readClues();
-        
-        assertTrue(clues.size() == 1);
-        
     }
     
     public void addBooksVariables(String name, String author, String isbn, String year, String comment) {
