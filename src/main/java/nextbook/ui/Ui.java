@@ -24,6 +24,10 @@ public class Ui {
         io.print("Give 'add book' to add book");
         io.print("Give 'add video' to add video");
         io.print("Give 'list' to list all recommendations");
+        io.print("Give 'update book' to update information of book");
+        io.print("Give 'update video' to update information of video");
+        io.print("Give 'remove book' to delete book");
+        io.print("Give 'remove video' to delete video");
         io.print("Give empty line to exit program");
         while (true) {
             io.print("");
@@ -59,6 +63,22 @@ public class Ui {
                 for (Clue c: clues) {
                     io.print(c);
                 }
+            }
+
+            if (command.equals("update book")) {
+                String name = io.readLine("Give name of the book");
+            }
+
+            if (command.equals("update video")) {
+                String name = io.readLine("Give name of the video");
+            }
+
+            if (command.equals("remove book")) {
+                String name = io.readLine("Give name of the book");
+            }
+
+            if (command.equals("remove video")) {
+                String name = io.readLine("Give name of the video");
             }
 
         }
