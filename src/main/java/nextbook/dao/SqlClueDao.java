@@ -71,10 +71,10 @@ public class SqlClueDao implements ClueDao {
     @Override
     public ArrayList filterClue(String type) {
         ArrayList<Clue> clues = new ArrayList<>();
-        if (type == "Book") {
+        if (type.equals("Book")) {
             clues.addAll(bookDao.getAll());
         }
-        if (type == "Video") {
+        if (type.equals("Video")) {
             clues.addAll(videoDao.getAll());
         }
         return clues;
