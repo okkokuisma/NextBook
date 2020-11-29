@@ -1,4 +1,3 @@
-
 package nextbook.io;
 
 import nextbook.domain.Clue;
