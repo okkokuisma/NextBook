@@ -14,6 +14,7 @@ public class Ui {
     private ClueService clueService;
     private Command add;
     private Command list;
+    private Command update;
     private Command exit;
 
     public Ui(IO io, ClueService clueService) {
@@ -21,14 +22,14 @@ public class Ui {
         this.clueService = clueService;
         this.add = new Add(io, clueService);
         this.list = new List(io, clueService);
+        this.update = new Update(io, clueService);
         this.exit = new Exit(io);
     }
 
     public void start() {
         io.print("Give 'add' to add book or video");
         io.print("Give 'list' to list all recommendations");
-        io.print("Give 'update book' to update information of book");
-        io.print("Give 'update video' to update information of video");
+        io.print("Give 'update' to update information of clue");
         io.print("Give 'remove book' to delete book");
         io.print("Give 'remove video' to delete video");
         io.print("Give empty line to exit program");
@@ -48,12 +49,8 @@ public class Ui {
                 list.execute();
             }
 
-            if (command.equals("update book")) {
-                String name = io.readLine("Give name of the book");
-            }
-
-            if (command.equals("update video")) {
-                String name = io.readLine("Give name of the video");
+            if (command.equals("update")) {
+                update.execute();
             }
 
             if (command.equals("remove book")) {

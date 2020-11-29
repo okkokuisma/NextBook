@@ -13,7 +13,7 @@ public class ClueService {
     public void createClue(Clue clue) {
         dao.create(clue);
     }
-    
+
     public ArrayList readClues() {
         return dao.getAll();
     }
