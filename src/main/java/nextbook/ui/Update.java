@@ -34,6 +34,8 @@ public class Update extends Command {
             if (io.readLine("Do you want change author of book (y/n)").equals("y")) {
                 book.setAuthor(io.readLine("Give new author of the book"));
             }
+            clueService.update(book);
+            io.print("Updated successfully");
         }
 
         if (clue instanceof Video) {
@@ -47,6 +49,8 @@ public class Update extends Command {
             if (io.readLine("Do you want change time of video (y/n)").equals("y")) {
                 video.setTime(io.readInt("Give new time of the video"));
             }
+            clueService.update(video);
+            io.print("Updated successfully");
         }
     }
 
