@@ -29,15 +29,5 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash)
       
   
-  checkstyle_job:
-    runs-on: ubuntu-latest
-    name: Checkstyle job
-    steps:
-    - uses: actions/checkout@v2
-    - uses: ./
-      with:
-        github_token: ${{ secrets.github_token }}
-        reporter: github-check
-        level: info
       
    
