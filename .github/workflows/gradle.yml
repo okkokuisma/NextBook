@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Set up JDK 1.11
       uses: actions/setup-java@v1
       with:
@@ -26,3 +25,6 @@ jobs:
       run: ./gradlew jacocoTestReport
     - name: Data to codecov
       run: bash <(curl -s https://codecov.io/bash)
+      steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
