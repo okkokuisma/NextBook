@@ -21,7 +21,12 @@ public class ConsoleIO implements IO{
 
     public int readInt(String prompt) {
         System.out.println(prompt);
-        return Integer.parseInt(scanner.nextLine());
+        
+        String line = scanner.nextLine();
+        if(!line.isEmpty()) {
+            return Integer.parseInt(line);
+        }
+        return -1;
     }
 
     public String readLine(String prompt) {

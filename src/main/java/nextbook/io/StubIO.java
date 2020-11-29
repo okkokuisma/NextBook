@@ -37,7 +37,7 @@ public class StubIO implements IO{
     }
 
     public void print(Clue toPrint) {
-        //
+        prints.add(toPrint.toString());
     }
 
     public String nextLine() {

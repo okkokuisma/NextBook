@@ -51,7 +51,7 @@ public class Ui {
 
                 Clue video = new Video(name, link, startTime);
                 clueService.createClue(video);
-                System.out.println("New video added");
+                io.print("New video added");
             }
 
             if (command.equals("list")) {
