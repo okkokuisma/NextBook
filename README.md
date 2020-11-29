@@ -29,3 +29,4 @@ Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/Nex
 
 [Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
 
+

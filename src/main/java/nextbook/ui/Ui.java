@@ -55,6 +55,7 @@ public class Ui {
 
             if (command.equals("remove book")) {
                 String name = io.readLine("Give name of the book");
+
             }
 
             if (command.equals("remove video")) {
