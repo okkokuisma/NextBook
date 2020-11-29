@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import nextbook.domain.Clue;
 
-public class StubIO implements IO{
+public class StubIO implements IO {
     private List<String> lines;
     private int currentLine;
     private ArrayList<String> prints;
