@@ -7,7 +7,7 @@ import nextbook.domain.Clue;
 
 public class StubIO implements IO{
     private List<String> lines;
-    private int i;
+    private int currentLine;
     private ArrayList<String> prints;
 
     public StubIO(List<String> values) {
@@ -21,7 +21,7 @@ public class StubIO implements IO{
 
     public int readInt(String prompt) {
         print(prompt);
-        return Integer.parseInt(lines.get(i++));
+        return Integer.parseInt(lines.get(currentLine++));
     }
 
     public ArrayList<String> getPrints() {
@@ -30,8 +30,8 @@ public class StubIO implements IO{
 
     public String readLine(String prompt) {
         print(prompt);
-        if (i < lines.size()) {
-            return lines.get(i++);
+        if (currentLine < lines.size()) {
+            return lines.get(currentLine++);
         }
         return "";
     }
@@ -41,8 +41,8 @@ public class StubIO implements IO{
     }
 
     public String nextLine() {
-        if (i < lines.size()) {
-            return lines.get(i++);
+        if (currentLine < lines.size()) {
+            return lines.get(currentLine++);
         }
         return "";
     }
