@@ -67,5 +67,22 @@ public class SqlClueDao implements ClueDao {
         
         return clues;
     }
-
+    
+    @Override
+    public void remove(Clue clue) {
+        if (clue instanceof Book) {
+            bookDao.remove(((Book) clue).getId());
+        } else if (clue instanceof Video) {
+            videoDao.remove(((Video) clue).getId());
+        }
+    }
+    
+    @Override
+    public void update(Clue clue) {
+        if (clue instanceof Book) {
+            bookDao.update((Book) clue);
+        } else if (clue instanceof Video) {
+            videoDao.update((Video) clue);
+        }
+    }
 }

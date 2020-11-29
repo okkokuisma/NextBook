@@ -34,6 +34,9 @@ public class SqlBookDao {
             ps.setInt(5, book.getYearPublished());
             ps.execute();
             
+            Statement s = dbconn.createStatement();
+            int id = ps.executeQuery("SELECT last_insert_rowid()").getInt(1);
+            
             dbconn.close();
         } catch (SQLException ex) {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,15 +47,16 @@ public class SqlBookDao {
         try {
             connect();
             Statement ps = dbconn.createStatement();
-            ResultSet queryResults = ps.executeQuery("SELECT name, author, isbn, comment, year FROM books");
+            ResultSet queryResults = ps.executeQuery("SELECT id, name, author, isbn, comment, year FROM books");
             
             ArrayList<Book> books = new ArrayList<>();
             while (queryResults.next()) {
-                Book book = new Book(queryResults.getString(1),
-                        queryResults.getString(2),
+                Book book = new Book(queryResults.getString(2),
                         queryResults.getString(3),
                         queryResults.getString(4),
-                        queryResults.getInt(5));
+                        queryResults.getString(5),
+                        queryResults.getInt(6));
+                book.setId(queryResults.getInt(1));
                 books.add(book);
             }
             
@@ -62,6 +66,43 @@ public class SqlBookDao {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }     
+    }
+    
+    public void remove(int id) {
+        try {
+            connect();
+            PreparedStatement ps = dbconn.prepareStatement("DELETE FROM books WHERE id = ?");
+            ps.setInt(1, id);
+            ps.execute();
+            
+            dbconn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void update(Book book) {
+        try {
+            connect();
+            PreparedStatement ps = dbconn.prepareStatement("UPDATE books SET "
+                + "name = ?, "
+                + "author = ?, "
+                + "isbn = ?, "
+                + "comment = ?, "
+                + "year = ? "
+                + "WHERE id = ?");
+            ps.setString(1, book.getName());
+            ps.setString(2, book.getAuthor());
+            ps.setString(3, book.getIsbn());
+            ps.setString(4, book.getComment());
+            ps.setInt(5, book.getYearPublished());
+            ps.setInt(6, book.getId());
+            ps.execute();
+            
+            dbconn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void connect() {

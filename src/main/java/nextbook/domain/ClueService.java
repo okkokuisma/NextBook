@@ -17,4 +17,12 @@ public class ClueService {
     public ArrayList readClues() {
         return dao.getAll();
     }
+    
+    public void remove(Clue clue) {
+        dao.remove(clue);
+    }
+    
+    public void update(Clue clue) {
+        dao.update(clue);
+    }
 }

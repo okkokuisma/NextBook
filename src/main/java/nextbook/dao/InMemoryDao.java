@@ -28,5 +28,15 @@ public class InMemoryDao implements ClueDao {
     public ArrayList getAll() {
         return clues;
     }
+
+    @Override
+    public void remove(Clue clue) {
+        
+    }
+
+    @Override
+    public void update(Clue clue) {
+        
+    }
     
 }

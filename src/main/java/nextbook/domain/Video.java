@@ -1,7 +1,7 @@
 package nextbook.domain;
 
 public class Video extends Clue {
-
+    private int id;
     private String name;
     private String link;
     private int time;
@@ -10,6 +10,14 @@ public class Video extends Clue {
         this.name = name;
         this.link = link;
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
