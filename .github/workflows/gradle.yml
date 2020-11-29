@@ -33,9 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Checkstyle job
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: CheckStyle with gradle
-      run: ./gradlew checkstyleMain
+    - uses: actions/checkout@v2
+    - uses: ./
+      with:
+        github_token: ${{ secrets.github_token }}
+        reporter: github-check
+        level: info
       
    
