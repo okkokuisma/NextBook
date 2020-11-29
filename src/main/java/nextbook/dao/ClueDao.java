@@ -15,4 +15,6 @@ import nextbook.domain.Clue;
 public interface ClueDao {
     public void create(Clue clue);
     public ArrayList getAll();
+    public void remove(Clue clue);
+    public void update(Clue clue);
 }
