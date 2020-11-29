@@ -59,26 +59,32 @@ public class Stepdefs {
         addBooksVariables(name, author, isbn, year, comment);
     }
     
+    @Given("video {string} with link {string} and time {string} is created")
+    public void videoWithLinkAndTimeIsCreated(String name, String link, String time) {
+        inputLines.add("add video");
+        addVideoVariables(name, link, time);
+    }
     
     @When("a valid name {string}, author {string}, isbn {string}, year {string} and comment {string} are entered")
     public void aValidNameAuthorIsbnYearAndCommentAreEntered(String name, String author, String isbn, String year, String comment) {
         addBooksVariables(name, author, isbn, year, comment);
-        
         uiStart();
     }
     
     @When("a valid name {string}, link {string} and time {string} are entered")
     public void aValidNameLinkAndTimeAreEntered(String name, String link, String time) {
-        inputLines.add(name);
-        inputLines.add(link);
-        inputLines.add(time);
-        
+        addVideoVariables(name, link, time);
         uiStart();
+    }
+
+    @Then("system will response with {string} and {string}")
+    public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2) {
+        assertTrue(io.getPrints().contains(expectedOutput1));
+        assertTrue(io.getPrints().contains(expectedOutput2));
     }
     
     @Then("system will response with {string}")
     public void systemWillResponseWith(String expectedOutput) {
-        System.out.println("hhhhh" + io.getPrints());
         assertTrue(io.getPrints().contains(expectedOutput));
     }
     
@@ -96,6 +102,12 @@ public class Stepdefs {
         inputLines.add(isbn);
         inputLines.add(year);
         inputLines.add(comment);
+    }
+    
+    public void addVideoVariables(String name, String link, String time) {
+        inputLines.add(name);
+        inputLines.add(link);
+        inputLines.add(time);
     }
     
     public void uiStart() {
