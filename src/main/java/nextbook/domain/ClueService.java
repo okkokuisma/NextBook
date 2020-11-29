@@ -17,4 +17,8 @@ public class ClueService {
     public ArrayList readClues() {
         return dao.getAll();
     }
+    
+    public ArrayList filterClues(String type) {
+        return dao.filterClue(type);
+    }
 }

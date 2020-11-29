@@ -68,4 +68,16 @@ public class SqlClueDao implements ClueDao {
         return clues;
     }
 
+    @Override
+    public ArrayList filterClue(String type) {
+        ArrayList<Clue> clues = new ArrayList<>();
+        if (type == "Book") {
+            clues.addAll(bookDao.getAll());
+        }
+        if (type == "Video") {
+            clues.addAll(videoDao.getAll());
+        }
+        return clues;
+    }
+
 }

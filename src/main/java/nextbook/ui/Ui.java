@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import nextbook.io.IO;
 
 public class Ui {
-    
+
     private IO io;
     //private Scanner sc;
     private ClueService clueService;
@@ -24,6 +24,7 @@ public class Ui {
         io.print("Give 'add book' to add book");
         io.print("Give 'add video' to add video");
         io.print("Give 'list' to list all recommendations");
+        io.print("Give 'filter' to filter recommendations by type");
         io.print("Give empty line to exit program");
         while (true) {
             io.print("");
@@ -56,7 +57,15 @@ public class Ui {
 
             if (command.equals("list")) {
                 ArrayList<Clue> clues = clueService.readClues();
-                for (Clue c: clues) {
+                for (Clue c : clues) {
+                    io.print(c);
+                }
+            }
+
+            if (command.equals("filter")) {
+                String type = io.readLine("Give type to filter");
+                ArrayList<Clue> clues = clueService.filterClues(type);
+                for (Clue c : clues) {
                     io.print(c);
                 }
             }
@@ -65,4 +74,3 @@ public class Ui {
     }
 
 }
-
