@@ -14,6 +14,7 @@ import nextbook.domain.Clue;
  */
 public class InMemoryDao implements ClueDao {
     ArrayList<Clue> clues;
+    ArrayList<Clue> filter;
 
     public InMemoryDao() {
         clues = new ArrayList();
@@ -27,6 +28,19 @@ public class InMemoryDao implements ClueDao {
     @Override
     public ArrayList getAll() {
         return clues;
+    }
+
+    @Override
+    public ArrayList filterClue(String type) {
+        return filter;
+    }
+  
+    public void remove(Clue clue) {
+        clues.remove(clue);
+    }
+
+    @Override
+    public void update(Clue clue) {
     }
     
 }

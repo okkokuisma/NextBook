@@ -1,6 +1,7 @@
 package nextbook.domain;
 
 public class Book extends Clue {
+    private int id;
     private String name;
     private String author;
     private String isbn;
@@ -20,6 +21,14 @@ public class Book extends Clue {
         this.yearPublished = yearPublished;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -62,7 +71,29 @@ public class Book extends Clue {
 
     @Override
     public String toString() {
-        return author + ": " + name;
+        return author + ": " + name + ", " + isbn + ", " + yearPublished;
+    }
+    
+    @Override
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
+
+        if (!(compared instanceof Book)) {
+            return false;
+        }
+
+        Book comparedBook = (Book) compared;
+
+        if (this.name.equals(comparedBook.name) &&
+            this.author.equals(comparedBook.author) &&
+            this.isbn.equals(comparedBook.isbn) &&
+            this.yearPublished == comparedBook.yearPublished) {
+            return true;
+        }
+
+        return false;
     }
 
 }

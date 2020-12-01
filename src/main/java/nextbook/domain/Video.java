@@ -1,7 +1,7 @@
 package nextbook.domain;
 
 public class Video extends Clue {
-
+    private int id;
     private String name;
     private String link;
     private int time;
@@ -10,6 +10,14 @@ public class Video extends Clue {
         this.name = name;
         this.link = link;
         this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,6 +48,26 @@ public class Video extends Clue {
     public String toString() {
         return "name=" + name + ", link=" + link + ", time=" + time;
     }
+    
+    @Override
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
 
+        if (!(compared instanceof Video)) {
+            return false;
+        }
+
+        Video comparedVideo = (Video) compared;
+
+        if (this.name.equals(comparedVideo.name) &&
+            this.link.equals(comparedVideo.link) &&
+            this.time == comparedVideo.time) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
