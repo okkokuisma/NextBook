@@ -29,4 +29,5 @@ public class ClueService {
     public void update(Clue clue) {
         dao.update(clue);
     }
+
 }

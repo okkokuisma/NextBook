@@ -26,9 +26,9 @@ public class Add extends Command {
             String name = io.readLine("Give name of the book");
             String author = io.readLine("Give author of the book");
             String isbn = io.readLine("Give ISBN of the book");
-            int year = io.readInt("Give year of publish of the book");
             String comment = io.readLine("Give comments to the book (all in one line)");
-            Clue book = new Book(name, author);
+            int year = io.readInt("Give year of publish of the book");
+            Clue book = new Book(name, author, isbn, comment, year);
             clueService.createClue(book);
             io.print("New book added");
         }
@@ -37,6 +37,7 @@ public class Add extends Command {
             String name = io.readLine("Give name of the video");
             String link = io.readLine("Give link to the video");
             int startTime = io.readInt("Give starting time of part of the video (in seconds)");
+            link = link + "?t=" + startTime;
 
             Clue video = new Video(name, link, startTime);
             clueService.createClue(video);

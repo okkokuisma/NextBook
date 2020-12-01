@@ -71,7 +71,7 @@ public class Book extends Clue {
 
     @Override
     public String toString() {
-        return author + ": " + name;
+        return author + ": " + name + ", " + isbn + ", " + yearPublished;
     }
     
     @Override
