@@ -16,6 +16,7 @@ public class Ui {
     private Command list;
     private Command update;
     private Command remove;
+    private Command filter;
     private Command exit;
 
     public Ui(IO io, ClueService clueService) {
@@ -24,6 +25,7 @@ public class Ui {
         this.add = new Add(io, clueService);
         this.list = new List(io, clueService);
         this.update = new Update(io, clueService);
+        this.filter = new Filter(io, clueService);
         this.remove = new Remove(io, clueService);
         this.exit = new Exit(io);
     }
@@ -55,19 +57,8 @@ public class Ui {
                 update.execute();
             }
 
-            if (command.equals("list")) {
-                ArrayList<Clue> clues = clueService.readClues();
-                for (Clue c : clues) {
-                    io.print(c);
-                }
-            }
-
             if (command.equals("filter")) {
-                String type = io.readLine("Give type to filter");
-                ArrayList<Clue> clues = clueService.filterClues(type);
-                for (Clue c : clues) {
-                    io.print(c);
-                }
+                filter.execute();
             }
           
             if (command.equals("remove")) {
