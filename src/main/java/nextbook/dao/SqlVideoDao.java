@@ -21,7 +21,12 @@ import nextbook.domain.Video;
  * @author okkokuisma
  */
 public class SqlVideoDao {
-    Connection dbconn;
+    private Connection dbconn;
+    private dbUtil dbUtil;
+
+    public SqlVideoDao(dbUtil dbUtil) {
+        this.dbUtil = dbUtil;
+    }   
     
     public void create(Video video) {
         try {
@@ -95,10 +100,6 @@ public class SqlVideoDao {
     }
     
     private void connect() {
-        try {
-            dbconn = DriverManager.getConnection("jdbc:sqlite:NextBook.db");
-        } catch (SQLException ex) {
-            Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        dbconn = dbUtil.connect();
     }
 }

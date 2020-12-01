@@ -73,5 +73,27 @@ public class Book extends Clue {
     public String toString() {
         return author + ": " + name;
     }
+    
+    @Override
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
+
+        if (!(compared instanceof Book)) {
+            return false;
+        }
+
+        Book comparedBook = (Book) compared;
+
+        if (this.name.equals(comparedBook.name) &&
+            this.author.equals(comparedBook.author) &&
+            this.isbn.equals(comparedBook.isbn) &&
+            this.yearPublished == comparedBook.yearPublished) {
+            return true;
+        }
+
+        return false;
+    }
 
 }

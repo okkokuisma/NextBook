@@ -48,6 +48,26 @@ public class Video extends Clue {
     public String toString() {
         return "name=" + name + ", link=" + link + ", time=" + time;
     }
+    
+    @Override
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
 
+        if (!(compared instanceof Video)) {
+            return false;
+        }
+
+        Video comparedVideo = (Video) compared;
+
+        if (this.name.equals(comparedVideo.name) &&
+            this.link.equals(comparedVideo.link) &&
+            this.time == comparedVideo.time) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
