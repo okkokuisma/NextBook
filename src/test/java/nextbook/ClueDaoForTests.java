@@ -23,5 +23,15 @@ public class ClueDaoForTests implements ClueDao {
     public ArrayList getAll() {
         return clues;
     }
+
+    @Override
+    public void remove(Clue clue) {
+        clues.remove(clue);
+    }
+
+    @Override
+    public void update(Clue clue) {
+        //
+    }
     
 }

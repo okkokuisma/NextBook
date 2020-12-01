@@ -23,7 +23,7 @@ public class ConsoleIO implements IO {
         System.out.println(prompt);
         
         String line = scanner.nextLine();
-        if(!line.isEmpty()) {
+        if (!line.isEmpty()) {
             return Integer.parseInt(line);
         }
         return -1;

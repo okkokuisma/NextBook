@@ -34,5 +34,13 @@ public class InMemoryDao implements ClueDao {
     public ArrayList filterClue(String type) {
         return filter;
     }
+  
+    public void remove(Clue clue) {
+        clues.remove(clue);
+    }
+
+    @Override
+    public void update(Clue clue) {
+    }
     
 }

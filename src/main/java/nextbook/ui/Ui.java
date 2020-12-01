@@ -5,27 +5,37 @@ import nextbook.domain.Clue;
 import nextbook.domain.Book;
 import nextbook.domain.Video;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import nextbook.io.IO;
 
 public class Ui {
 
     private IO io;
-    //private Scanner sc;
     private ClueService clueService;
+    private Command add;
+    private Command list;
+    private Command update;
+    private Command remove;
+    private Command exit;
 
     public Ui(IO io, ClueService clueService) {
         this.io = io;
         this.clueService = clueService;
+        this.add = new Add(io, clueService);
+        this.list = new List(io, clueService);
+        this.update = new Update(io, clueService);
+        this.remove = new Remove(io, clueService);
+        this.exit = new Exit(io);
     }
 
     public void start() {
-        io.print("Give 'add book' to add book");
-        io.print("Give 'add video' to add video");
+        io.print("Give 'add' to add book or video");
         io.print("Give 'list' to list all recommendations");
         io.print("Give 'filter' to filter recommendations by type");
+        io.print("Give 'update' to update information of recommendation");
+        io.print("Give 'remove' to delete recommendation");
         io.print("Give empty line to exit program");
+
         while (true) {
             io.print("");
             String command = io.nextLine();
@@ -33,26 +43,16 @@ public class Ui {
                 break;
             }
 
-            if (command.equals("add book")) {
-                String name = io.readLine("Give name of the book");
-                String author = io.readLine("Give author of the book");
-                String isbn = io.readLine("Give ISBN of the book");
-                int year = io.readInt("Give year of publish of the book");
-                String comment = io.readLine("Give comments to the book (all in one line)");
-
-                Clue book = new Book(name, author);
-                clueService.createClue(book);
-                io.print("New book added");
+            if (command.equals("add")) {
+                add.execute();
             }
 
-            if (command.equals("add video")) {
-                String name = io.readLine("Give name of the video");
-                String link = io.readLine("Give link to the video");
-                int startTime = io.readInt("Give starting time of part of the video (in seconds)");
+            if (command.equals("list")) {
+                list.execute();
+            }
 
-                Clue video = new Video(name, link, startTime);
-                clueService.createClue(video);
-                io.print("New video added");
+            if (command.equals("update")) {
+                update.execute();
             }
 
             if (command.equals("list")) {
@@ -68,6 +68,10 @@ public class Ui {
                 for (Clue c : clues) {
                     io.print(c);
                 }
+            }
+          
+            if (command.equals("remove")) {
+                remove.execute();
             }
 
         }
