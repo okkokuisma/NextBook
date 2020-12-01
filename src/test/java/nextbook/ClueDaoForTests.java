@@ -33,5 +33,9 @@ public class ClueDaoForTests implements ClueDao {
     public void update(Clue clue) {
         //
     }
-    
+
+    @Override
+    public ArrayList filterClue(String type) {
+        return clues;
+    }
 }
