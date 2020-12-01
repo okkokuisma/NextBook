@@ -36,7 +36,6 @@ public class ClueDaoForTests implements ClueDao {
 
     @Override
     public ArrayList filterClue(String type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return clues;
     }
-    
 }
