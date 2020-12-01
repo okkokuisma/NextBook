@@ -67,6 +67,18 @@ public class SqlClueDao implements ClueDao {
         
         return clues;
     }
+
+    @Override
+    public ArrayList filterClue(String type) {
+        ArrayList<Clue> clues = new ArrayList<>();
+        if (type.equals("Book")) {
+            clues.addAll(bookDao.getAll());
+        }
+        if (type.equals("Video")) {
+            clues.addAll(videoDao.getAll());
+        }
+        return clues;
+    }
     
     @Override
     public void remove(Clue clue) {
@@ -85,4 +97,5 @@ public class SqlClueDao implements ClueDao {
             videoDao.update((Video) clue);
         }
     }
+  
 }
