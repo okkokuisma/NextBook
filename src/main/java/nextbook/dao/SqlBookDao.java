@@ -22,6 +22,11 @@ import nextbook.domain.Book;
  */
 public class SqlBookDao {
     Connection dbconn;
+    DbUtil dbUtil;
+
+    public SqlBookDao(DbUtil dbUtil) {
+        this.dbUtil = dbUtil;
+    }
     
     public void create(Book book) {
         try {
@@ -35,7 +40,6 @@ public class SqlBookDao {
             ps.execute();
             
             Statement s = dbconn.createStatement();
-            int id = ps.executeQuery("SELECT last_insert_rowid()").getInt(1);
             
             dbconn.close();
         } catch (SQLException ex) {
@@ -106,10 +110,6 @@ public class SqlBookDao {
     }
     
     private void connect() {
-        try {
-            dbconn = DriverManager.getConnection("jdbc:sqlite:NextBook.db");
-        } catch (SQLException ex) {
-            Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        dbconn = dbUtil.connect();
     }
 }

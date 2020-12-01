@@ -4,17 +4,20 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import nextbook.dao.ClueDao;
 import nextbook.domain.ClueService;
 import nextbook.io.StubIO;
 import nextbook.ui.Ui;
+import io.cucumber.java.After;
+import nextbook.dao.DbUtil;
+import nextbook.dao.SqlClueDao;
 
 import static org.junit.Assert.*;
 
 public class Stepdefs {
-    ClueDao dao = new ClueDaoForTests();
     StubIO io;
     Ui ui;
     List<String> inputLines;
@@ -23,8 +26,15 @@ public class Stepdefs {
     
     @Before
     public void setup() {
+        ClueDao dao = new SqlClueDao(new DbUtil(true));
         this.service = new ClueService(dao);
         this.inputLines = new ArrayList<>();
+    }
+    
+    @After
+    public void tearDown() {
+        File testDb = new File("test.db");
+        testDb.delete();
     }
    
     @Given("command add is selected")
