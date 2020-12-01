@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import nextbook.io.IO;
 
 public class Ui {
-    
+
     private IO io;
     private ClueService clueService;
     private Command add;
@@ -31,15 +31,15 @@ public class Ui {
     public void start() {
         io.print("Give 'add' to add book or video");
         io.print("Give 'list' to list all recommendations");
-        io.print("Give 'update' to update information of clue");
-        io.print("Give 'remove' to delete book");
+        io.print("Give 'filter' to filter recommendations by type");
+        io.print("Give 'update' to update information of recommendation");
+        io.print("Give 'remove' to delete recommendation");
         io.print("Give empty line to exit program");
 
         while (true) {
             io.print("");
             String command = io.nextLine();
             if (command.isEmpty()) {
-                //exit.execute();
                 break;
             }
 
@@ -55,6 +55,21 @@ public class Ui {
                 update.execute();
             }
 
+            if (command.equals("list")) {
+                ArrayList<Clue> clues = clueService.readClues();
+                for (Clue c : clues) {
+                    io.print(c);
+                }
+            }
+
+            if (command.equals("filter")) {
+                String type = io.readLine("Give type to filter");
+                ArrayList<Clue> clues = clueService.filterClues(type);
+                for (Clue c : clues) {
+                    io.print(c);
+                }
+            }
+          
             if (command.equals("remove")) {
                 remove.execute();
             }
@@ -63,4 +78,3 @@ public class Ui {
     }
 
 }
-
