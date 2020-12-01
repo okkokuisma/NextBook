@@ -5,6 +5,9 @@
 
 NextBook on ohjelma jolla voidaan pitää yllä lukuvinkkikirjastoa.
 
+## Testikattavuus
+Testikattavuus tehty codecovilla
+
 ## Komentorivi komennot
 Tässä on aluksi muutama oleellinen toimiva komento:
 - ajaa ohjelman eikä tulosta konsoliin mitään turhaa
