@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import nextbook.io.IO;
 
 public class Ui {
-    
+
     private IO io;
     private ClueService clueService;
     private Command add;
     private Command list;
     private Command update;
+    private Command remove;
     private Command exit;
 
     public Ui(IO io, ClueService clueService) {
@@ -23,22 +24,23 @@ public class Ui {
         this.add = new Add(io, clueService);
         this.list = new List(io, clueService);
         this.update = new Update(io, clueService);
+        this.remove = new Remove(io, clueService);
         this.exit = new Exit(io);
     }
 
     public void start() {
         io.print("Give 'add' to add book or video");
         io.print("Give 'list' to list all recommendations");
-        io.print("Give 'update' to update information of clue");
-        io.print("Give 'remove book' to delete book");
-        io.print("Give 'remove video' to delete video");
+        io.print("Give 'filter' to filter recommendations by type");
+        io.print("Give 'update' to update information of recommendation");
+        io.print("Give 'remove' to delete recommendation");
         io.print("Give empty line to exit program");
 
         while (true) {
             io.print("");
             String command = io.nextLine();
             if (command.isEmpty()) {
-                exit.execute();
+                break;
             }
 
             if (command.equals("add")) {
@@ -53,17 +55,26 @@ public class Ui {
                 update.execute();
             }
 
-            if (command.equals("remove book")) {
-                String name = io.readLine("Give name of the book");
-
+            if (command.equals("list")) {
+                ArrayList<Clue> clues = clueService.readClues();
+                for (Clue c : clues) {
+                    io.print(c);
+                }
             }
 
-            if (command.equals("remove video")) {
-                String name = io.readLine("Give name of the video");
+            if (command.equals("filter")) {
+                String type = io.readLine("Give type to filter");
+                ArrayList<Clue> clues = clueService.filterClues(type);
+                for (Clue c : clues) {
+                    io.print(c);
+                }
+            }
+          
+            if (command.equals("remove")) {
+                remove.execute();
             }
 
         }
     }
 
 }
-
