@@ -34,6 +34,15 @@ public class Update extends Command {
             if (io.readLine("Do you want change author of book (y/n)").equals("y")) {
                 book.setAuthor(io.readLine("Give new author of the book"));
             }
+            if (io.readLine("Do you want change ISBN of book (y/n)").equals("y")) {
+                book.setIsbn(io.readLine("Give new ISBN of the book"));
+            }
+            if (io.readLine("Do you want change comments of book (y/n)").equals("y")) {
+                book.setComment(io.readLine("Give new comments of the book (all in same line)"));
+            }
+            if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
+                book.setYearPublished(io.readInt("Give new publish year of the book"));
+            }
             clueService.update(book);
             io.print("Updated successfully");
         }
