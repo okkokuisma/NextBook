@@ -1,4 +1,3 @@
-
 package nextbook.io;
 
 import java.util.ArrayList;
@@ -16,12 +15,16 @@ public class StubIO implements IO {
     }
 
     public void print(String toPrint) {
+        System.out.println("print" + toPrint);
         prints.add(toPrint);
     }
 
     public int readInt(String prompt) {
         print(prompt);
-        return Integer.parseInt(lines.get(currentLine++));
+        String i = lines.get(currentLine++);
+        System.out.println("readint" + i);
+        return Integer.parseInt(i);
+        //return Integer.parseInt(lines.get(currentLine++));
     }
 
     public ArrayList<String> getPrints() {
@@ -37,6 +40,7 @@ public class StubIO implements IO {
     }
 
     public void print(Clue toPrint) {
+        System.out.println("clue" + toPrint);
         prints.add(toPrint.toString());
     }
 

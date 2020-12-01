@@ -43,6 +43,17 @@ public class Stepdefs {
         uiStart();
     }
     
+    @Given("command update is selected")
+    public void commandUpdateIsSelected() {
+        System.out.println("update");
+        inputLines.add("update");
+    }
+    
+    @Given("id {string} is selected")
+    public void idIsSelected(String string) {
+        inputLines.add(string);
+    }
+    
     @Given("book {string} with author {string} and with isbn {string}, year {string} and comment {string} is created")
     public void bookWithAuthorAndWithIsbnYearAndCommentIsCreated(String name, String author, String isbn, String year, String comment) {
         inputLines.add("add");
@@ -69,6 +80,26 @@ public class Stepdefs {
     @When("a valid name {string}, link {string} and time {string} are entered")
     public void aValidNameLinkAndTimeAreEntered(String name, String link, String time) {
         addVideoVariables(name, link, time);
+        uiStart();
+    }
+    
+    @When("name is updated to {string} and author to {string}")
+    public void nameIsUpdatedToAndAuthorTo(String name, String author) {
+        inputLines.add("y");
+        inputLines.add(name);
+        inputLines.add("y");
+        inputLines.add(author);
+        uiStart();
+    }
+    
+    @When("name is updated to {string} and link to {string} and time to {string}")
+    public void nameIsUpdatedToAndLinkToAndTimeTo(String name, String link, String time) {
+        inputLines.add("y");
+        inputLines.add(name);
+        inputLines.add("y");
+        inputLines.add(link);
+        inputLines.add("y");
+        inputLines.add(time);
         uiStart();
     }
     
