@@ -19,35 +19,9 @@ public class SqlClueDao implements ClueDao {
     SqlBookDao bookDao;
     SqlVideoDao videoDao;
     
-    public SqlClueDao() {
-        bookDao = new SqlBookDao();
-        videoDao = new SqlVideoDao();
-        Connection dbconn = null;
-        
-        try {
-            dbconn = DriverManager.getConnection("jdbc:sqlite:NextBook.db");
-            Statement s = dbconn.createStatement();
-
-            s.execute("CREATE TABLE IF NOT EXISTS books ("
-                    + "id INTEGER PRIMARY KEY,"
-                    + "name TEXT,"
-                    + "author TEXT,"
-                    + "isbn TEXT,"
-                    + "comment TEXT,"
-                    + "year INTEGER)");
-            s.execute("CREATE TABLE IF NOT EXISTS videos ("
-                    + "id INTEGER PRIMARY KEY,"
-                    + "name TEXT,"
-                    + "url TEXT,"
-                    + "time TEXT)");
-
-            dbconn.close();
-            System.out.println("Opened database successfully");
-        } catch (Exception e) {
-            System.out.println("Error while opening the database");
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }   
+    public SqlClueDao(DbUtil dbUtil) {
+        bookDao = new SqlBookDao(dbUtil);
+        videoDao = new SqlVideoDao(dbUtil);     
     }
 
     @Override
@@ -60,7 +34,7 @@ public class SqlClueDao implements ClueDao {
     }
 
     @Override
-    public ArrayList getAll() {
+    public ArrayList<Clue> getAll() {
         ArrayList<Clue> clues = new ArrayList<>();
         clues.addAll(bookDao.getAll());
         clues.addAll(videoDao.getAll());
