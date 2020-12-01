@@ -7,7 +7,7 @@ package nextbook;
 
 import java.io.File;
 import nextbook.dao.SqlClueDao;
-import nextbook.dao.dbUtil;
+import nextbook.dao.DbUtil;
 import nextbook.domain.Book;
 import nextbook.domain.Clue;
 import nextbook.domain.Video;
@@ -28,7 +28,7 @@ public class SqlClueDaoTest {
     
     @Before
     public void setUp() {
-        dao = new SqlClueDao(new dbUtil(true));
+        dao = new SqlClueDao(new DbUtil(true));
         dao.create(new Book("name", "author", "isbn", "comment", 2000));
         dao.create(new Video("name", "youtube.com", 20));
     }

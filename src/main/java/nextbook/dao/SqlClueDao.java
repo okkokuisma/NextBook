@@ -19,7 +19,7 @@ public class SqlClueDao implements ClueDao {
     SqlBookDao bookDao;
     SqlVideoDao videoDao;
     
-    public SqlClueDao(dbUtil dbUtil) {
+    public SqlClueDao(DbUtil dbUtil) {
         bookDao = new SqlBookDao(dbUtil);
         videoDao = new SqlVideoDao(dbUtil);     
     }

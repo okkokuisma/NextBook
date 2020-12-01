@@ -5,7 +5,7 @@ import nextbook.domain.ClueService;
 import nextbook.dao.ClueDao;
 import java.util.Scanner;
 import nextbook.dao.SqlClueDao;
-import nextbook.dao.dbUtil;
+import nextbook.dao.DbUtil;
 import nextbook.io.ConsoleIO;
 import nextbook.io.IO;
 
@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        dbUtil dbUtil = new dbUtil(false);
+        DbUtil dbUtil = new DbUtil(false);
         ClueDao dao = new SqlClueDao(dbUtil);
         IO io = new ConsoleIO();
         ClueService clueService = new ClueService(dao);

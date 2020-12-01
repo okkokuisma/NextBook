@@ -22,9 +22,9 @@ import nextbook.domain.Video;
  */
 public class SqlVideoDao {
     private Connection dbconn;
-    private dbUtil dbUtil;
+    private DbUtil dbUtil;
 
-    public SqlVideoDao(dbUtil dbUtil) {
+    public SqlVideoDao(DbUtil dbUtil) {
         this.dbUtil = dbUtil;
     }   
     

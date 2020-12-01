@@ -16,11 +16,11 @@ import java.util.logging.Logger;
  *
  * @author okkokuisma
  */
-public class dbUtil {
+public class DbUtil {
     private Connection dbconn;
     private String databasePath;
     
-    public dbUtil(boolean test) {
+    public DbUtil(boolean test) {
         if (test) {
             databasePath = "jdbc:sqlite:test.db";
         } else {

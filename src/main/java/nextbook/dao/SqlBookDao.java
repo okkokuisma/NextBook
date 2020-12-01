@@ -22,9 +22,9 @@ import nextbook.domain.Book;
  */
 public class SqlBookDao {
     Connection dbconn;
-    dbUtil dbUtil;
+    DbUtil dbUtil;
 
-    public SqlBookDao(dbUtil dbUtil) {
+    public SqlBookDao(DbUtil dbUtil) {
         this.dbUtil = dbUtil;
     }
     
