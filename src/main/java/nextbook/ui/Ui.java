@@ -1,11 +1,7 @@
 package nextbook.ui;
 
 import nextbook.domain.ClueService;
-import nextbook.domain.Clue;
-import nextbook.domain.Book;
-import nextbook.domain.Video;
 
-import java.util.ArrayList;
 import nextbook.io.IO;
 
 public class Ui {
@@ -31,7 +27,7 @@ public class Ui {
     }
 
     public void start() {
-        io.print("Give 'add' to add book or video");
+        io.print("Give 'add' to add book, video or blog post");
         io.print("Give 'list' to list all recommendations");
         io.print("Give 'filter' to filter recommendations by type");
         io.print("Give 'update' to update information of recommendation");

@@ -8,8 +8,7 @@ public class Blog extends Clue {
     private String link;
     private String comment;
 
-    public Blog(int id, String name, String author, String link, String comment) {
-        this.id = id;
+    public Blog(String name, String author, String link, String comment) {
         this.name = name;
         this.author = author;
         this.link = link;

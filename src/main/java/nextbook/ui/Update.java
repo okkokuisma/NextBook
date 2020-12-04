@@ -7,6 +7,7 @@ import nextbook.domain.Book;
 import nextbook.domain.Video;
 
 import java.util.ArrayList;
+import nextbook.domain.Blog;
 
 public class Update extends Command {
 
@@ -59,6 +60,24 @@ public class Update extends Command {
                 video.setTime(io.readInt("Give new time of the video"));
             }
             clueService.update(video);
+            io.print("Updated successfully");
+        }
+        
+        if (clue instanceof Blog) {
+            Blog blog = (Blog) clue;
+            if (io.readLine("Do you want to change name of the blog post (y/n)").equals("y")) {
+                blog.setName(io.readLine("Give new name of the post"));
+            }
+            if (io.readLine("Do you want to change the author of blog post (y/n)").equals("y")) {
+                blog.setAuthor(io.readLine("Give new author of the post"));
+            }
+            if (io.readLine("Do you want change link of blog post (y/n)").equals("y")) {
+                blog.setLink(io.readLine("Give new link of the post"));
+            }
+            if (io.readLine("Do you want change comments of blog post (y/n)").equals("y")) {
+                blog.setComment(io.readLine("Give new comments of the post (all in same line)"));
+            }
+            clueService.update(blog);
             io.print("Updated successfully");
         }
     }

@@ -12,6 +12,7 @@ public class Filter extends Command {
 
     private static final String BOOK = "Book";
     private static final String VIDEO = "Video";
+    private static final String BLOG = "Blog";
 
     private ClueService clueService;
 
@@ -23,7 +24,7 @@ public class Filter extends Command {
 
     @Override
     public void execute() {
-        String type = io.readLine("Change book or videos (b/v)?");
+        String type = io.readLine("List books, videos or blog posts (b/v/bp)?");
         ArrayList<Clue> clues = null;
 
         if (type.equals("b")) {
@@ -31,6 +32,9 @@ public class Filter extends Command {
         }
         if (type.equals("v")) {
             clues = clueService.filterClues(VIDEO);
+        }
+        if (type.equals("bp")) {
+            clues = clueService.filterClues(BLOG);
         }
 
         if (clues == null) {
