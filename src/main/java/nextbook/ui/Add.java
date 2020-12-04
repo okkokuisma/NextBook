@@ -30,8 +30,7 @@ public class Add extends Command {
             int year = 0;
             try {
                 year = io.readInt("Give year of publish of the book");
-            } 
-            catch (NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 System.out.println("Invalid input! You have to enter a number");
                 return;
             }
