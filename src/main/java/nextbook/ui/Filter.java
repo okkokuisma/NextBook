@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class Filter extends Command {
 
-    private final String BOOK = "Book";
-    private final String VIDEO = "Video";
+    private final static String BOOK = "Book";
+    private final static String VIDEO = "Video";
 
     private ClueService clueService;
 
