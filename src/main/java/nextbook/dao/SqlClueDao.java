@@ -11,6 +11,7 @@ package nextbook.dao;
  */
 import java.sql.*;
 import java.util.ArrayList;
+import nextbook.domain.Blog;
 import nextbook.domain.Book;
 import nextbook.domain.Clue;
 import nextbook.domain.Video;
@@ -18,10 +19,12 @@ import nextbook.domain.Video;
 public class SqlClueDao implements ClueDao {
     SqlBookDao bookDao;
     SqlVideoDao videoDao;
+    SqlBlogDao blogDao;
     
     public SqlClueDao(DbUtil dbUtil) {
         bookDao = new SqlBookDao(dbUtil);
-        videoDao = new SqlVideoDao(dbUtil);     
+        videoDao = new SqlVideoDao(dbUtil);  
+        blogDao = new SqlBlogDao(dbUtil);
     }
 
     @Override
@@ -30,6 +33,8 @@ public class SqlClueDao implements ClueDao {
             bookDao.create((Book) clue);
         } else if (clue instanceof Video) {
             videoDao.create((Video) clue);
+        } else if (clue instanceof Blog) {
+            blogDao.create((Blog) clue);
         }
     }
 
@@ -38,6 +43,7 @@ public class SqlClueDao implements ClueDao {
         ArrayList<Clue> clues = new ArrayList<>();
         clues.addAll(bookDao.getAll());
         clues.addAll(videoDao.getAll());
+        clues.addAll(blogDao.getAll());
         
         return clues;
     }
@@ -51,6 +57,9 @@ public class SqlClueDao implements ClueDao {
         if (type.equals("Video")) {
             clues.addAll(videoDao.getAll());
         }
+        if (type.equals("Blog")) {
+            clues.addAll(blogDao.getAll());
+        }
         return clues;
     }
     
@@ -60,6 +69,8 @@ public class SqlClueDao implements ClueDao {
             bookDao.remove(((Book) clue).getId());
         } else if (clue instanceof Video) {
             videoDao.remove(((Video) clue).getId());
+        } else if (clue instanceof Blog) {
+            blogDao.remove(((Blog) clue).getId());
         }
     }
     
@@ -69,6 +80,8 @@ public class SqlClueDao implements ClueDao {
             bookDao.update((Book) clue);
         } else if (clue instanceof Video) {
             videoDao.update((Video) clue);
+        } else if (clue instanceof Blog) {
+            blogDao.update((Blog) clue);
         }
     }
   

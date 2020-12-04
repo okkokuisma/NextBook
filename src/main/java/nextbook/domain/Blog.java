@@ -1,18 +1,22 @@
 
 package nextbook.domain;
 
+import java.util.ArrayList;
+
 public class Blog extends Clue {
     private int id;
     private String name;
     private String author;
     private String link;
     private String comment;
+    private ArrayList<Tag> tags;
 
     public Blog(String name, String author, String link, String comment) {
         this.name = name;
         this.author = author;
         this.link = link;
         this.comment = comment;
+        this.tags = new ArrayList();
     }
 
     public int getId() {
