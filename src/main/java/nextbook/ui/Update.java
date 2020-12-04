@@ -27,45 +27,55 @@ public class Update extends Command {
         Clue clue = clues.get(id - 1);
 
         if (clue instanceof Book) {
-            Book book = (Book) clue;
-            if (io.readLine("Do you want change name of book (y/n)").equals("y")) {
-                book.setName(io.readLine("Give new name of the book"));
-            }
-            if (io.readLine("Do you want change author of book (y/n)").equals("y")) {
-                book.setAuthor(io.readLine("Give new author of the book"));
-            }
-            if (io.readLine("Do you want change ISBN of book (y/n)").equals("y")) {
-                book.setIsbn(io.readLine("Give new ISBN of the book"));
-            }
-            if (io.readLine("Do you want change comments of book (y/n)").equals("y")) {
-                book.setComment(io.readLine("Give new comments of the book (all in same line)"));
-            }
-            try {
-                if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
-                    book.setYearPublished(io.readInt("Give new publish year of the book"));
-                }
-            } catch (NumberFormatException ex) {
-                System.out.println("Invalid input! You have to enter a number");
-                return;
-            }
-            clueService.update(book);
-            io.print("Updated successfully");
+            updateBook(clue);
         }
 
         if (clue instanceof Video) {
-            Video video = (Video) clue;
-            if (io.readLine("Do you want change name of video (y/n)").equals("y")) {
-                video.setName(io.readLine("Give new name of the video"));
-            }
-            if (io.readLine("Do you want change link of video (y/n)").equals("y")) {
-                video.setLink(io.readLine("Give new link of the video"));
-            }
-            if (io.readLine("Do you want change time of video (y/n)").equals("y")) {
-                video.setTime(io.readInt("Give new time of the video"));
-            }
-            clueService.update(video);
-            io.print("Updated successfully");
+            updateVideo(clue);
         }
+    }
+
+    public void updateBook(Clue clue) {
+
+        Book book = (Book) clue;
+        if (io.readLine("Do you want change name of book (y/n)").equals("y")) {
+            book.setName(io.readLine("Give new name of the book"));
+        }
+        if (io.readLine("Do you want change author of book (y/n)").equals("y")) {
+            book.setAuthor(io.readLine("Give new author of the book"));
+        }
+        if (io.readLine("Do you want change ISBN of book (y/n)").equals("y")) {
+            book.setIsbn(io.readLine("Give new ISBN of the book"));
+        }
+        if (io.readLine("Do you want change comments of book (y/n)").equals("y")) {
+            book.setComment(io.readLine("Give new comments of the book (all in same line)"));
+        }
+        try {
+            if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
+                book.setYearPublished(io.readInt("Give new publish year of the book"));
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Invalid input! You have to enter a number");
+            return;
+        }
+        clueService.update(book);
+        io.print("Updated successfully");
+
+    }
+
+    public void updateVideo(Clue clue) {
+        Video video = (Video) clue;
+        if (io.readLine("Do you want change name of video (y/n)").equals("y")) {
+            video.setName(io.readLine("Give new name of the video"));
+        }
+        if (io.readLine("Do you want change link of video (y/n)").equals("y")) {
+            video.setLink(io.readLine("Give new link of the video"));
+        }
+        if (io.readLine("Do you want change time of video (y/n)").equals("y")) {
+            video.setTime(io.readInt("Give new time of the video"));
+        }
+        clueService.update(video);
+        io.print("Updated successfully");
     }
 
 }
