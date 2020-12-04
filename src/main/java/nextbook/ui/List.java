@@ -7,6 +7,7 @@ import nextbook.domain.Book;
 import nextbook.domain.Video;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class List extends Command {
 
@@ -20,6 +21,7 @@ public class List extends Command {
     @Override
     public void execute() {
         ArrayList<Clue> clues = clueService.readClues();
+        Collections.sort(clues);
         for (Clue c: clues) {
             io.print(c);
         }
