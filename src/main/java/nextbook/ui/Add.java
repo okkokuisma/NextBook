@@ -39,7 +39,7 @@ public class Add extends Command {
             String name = io.readLine("Give name of the video");
             String link = io.readLine("Give link to the video");
             int startTime = io.readInt("Give starting time of part of the video (in seconds)");
-            link = link + "?t=" + startTime;
+            link = link + "&t=" + startTime;
 
             Clue video = new Video(name, link, startTime);
             clueService.createClue(video);
