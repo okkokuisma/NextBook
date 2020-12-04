@@ -54,7 +54,7 @@ public class SqlVideoDao {
                 Video video = new Video(queryResults.getString(2),
                         queryResults.getString(3),
                         queryResults.getInt(4));
-                video.setId(1);
+                video.setId(queryResults.getInt(1));
                 videos.add(video);
             }
             
