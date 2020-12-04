@@ -40,8 +40,13 @@ public class Update extends Command {
             if (io.readLine("Do you want change comments of book (y/n)").equals("y")) {
                 book.setComment(io.readLine("Give new comments of the book (all in same line)"));
             }
-            if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
-                book.setYearPublished(io.readInt("Give new publish year of the book"));
+            try {
+                if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
+                    book.setYearPublished(io.readInt("Give new publish year of the book"));
+                }
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid input! You have to enter a number");
+                return;
             }
             clueService.update(book);
             io.print("Updated successfully");
@@ -64,4 +69,3 @@ public class Update extends Command {
     }
 
 }
-
