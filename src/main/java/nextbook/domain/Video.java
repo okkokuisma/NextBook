@@ -1,15 +1,19 @@
 package nextbook.domain;
 
+import java.util.ArrayList;
+
 public class Video extends Clue {
     private int id;
     private String name;
     private String link;
     private int time;
+    private ArrayList<Tag> tags;
 
     public Video(String name, String link, int time) {
         this.name = name;
         this.link = link;
         this.time = time;
+        this.tags = new ArrayList();
     }
 
     public int getId() {

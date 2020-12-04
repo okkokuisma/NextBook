@@ -1,5 +1,7 @@
 package nextbook.domain;
 
+import java.util.ArrayList;
+
 public class Book extends Clue {
     private int id;
     private String name;
@@ -7,10 +9,10 @@ public class Book extends Clue {
     private String isbn;
     private String comment;
     private int yearPublished;
+    private ArrayList<Tag> tags;
     
     public Book(String name, String author) {
-        this.name = name;
-        this.author = author;
+        this(name, author, "123456789", "", 2000);
     }
 
     public Book(String name, String author, String isbn, String comment, int yearPublished) {
@@ -19,6 +21,7 @@ public class Book extends Clue {
         this.isbn = isbn;
         this.comment = comment;
         this.yearPublished = yearPublished;
+        this.tags = new ArrayList();
     }
 
     public int getId() {
