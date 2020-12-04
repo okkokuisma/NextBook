@@ -53,6 +53,22 @@ public class Stepdefs {
         uiStart();
     }
     
+    @Given("command update is selected")
+    public void commandUpdateIsSelected() {
+        inputLines.add("update");
+    }
+    
+    @Given("id {string} is selected")
+    public void idIsSelected(String string) {
+        inputLines.add(string);
+    }
+    
+    @Given("id {string} is selected for removing")
+    public void idIsSelectedForRemoving(String string) {
+        inputLines.add(string);
+        uiStart();
+    }
+    
     @Given("book {string} with author {string} and with isbn {string}, year {string} and comment {string} is created")
     public void bookWithAuthorAndWithIsbnYearAndCommentIsCreated(String name, String author, String isbn, String year, String comment) {
         inputLines.add("add");
@@ -67,18 +83,46 @@ public class Stepdefs {
         addVideoVariables(name, link, time);
     }
     
-    @When("a valid name {string}, author {string}, isbn {string}, year {string} and comment {string} are entered")
-    public void aValidNameAuthorIsbnYearAndCommentAreEntered(String name, String author, String isbn, String year, String comment) {
+    @Given("command remove video is selected")
+    public void commandRemoveVideoIsSelected() {
+        inputLines.add("remove");
+    }
+    
+    @When("a valid name {string}, author {string}, isbn {string}, comment {string} and year {string} are entered")
+    public void aValidNameAuthorIsbnCommentAndYearAreEntered(String name, String author, String isbn, String comment, String year) {
         addBooksVariables(name, author, isbn, year, comment);
-        System.out.println("mmmm" + this.inputLines);
-        io = new StubIO(inputLines);
-        ui = new Ui(io, service);
-        ui.start();
+        uiStart();
     }
     
     @When("a valid name {string}, link {string} and time {string} are entered")
     public void aValidNameLinkAndTimeAreEntered(String name, String link, String time) {
         addVideoVariables(name, link, time);
+        uiStart();
+    }
+    
+    @When("name is updated to {string}, author to {string} isbn to {string}, year to {string} and comment to {string}")
+    public void nameIsUpdatedToAuthorToIsbnToYearToAndCommentTo(String name, String author, String isbn, String year, String comment) {
+        inputLines.add("y");
+        inputLines.add(name);
+        inputLines.add("y");
+        inputLines.add(author);
+        inputLines.add("y");
+        inputLines.add(isbn);
+        inputLines.add("y");
+        inputLines.add(comment);
+        inputLines.add("y");
+        inputLines.add(year);
+        uiStart();
+    }
+    
+    @When("name is updated to {string} and link to {string} and time to {string}")
+    public void nameIsUpdatedToAndLinkToAndTimeTo(String name, String link, String time) {
+        inputLines.add("y");
+        inputLines.add(name);
+        inputLines.add("y");
+        inputLines.add(link);
+        inputLines.add("y");
+        inputLines.add(time);
         uiStart();
     }
     
@@ -99,8 +143,8 @@ public class Stepdefs {
         inputLines.add(name);
         inputLines.add(author);
         inputLines.add(isbn);
-        inputLines.add(year);
         inputLines.add(comment);
+        inputLines.add(year);
     }
     
     public void addVideoVariables(String name, String link, String time) {
