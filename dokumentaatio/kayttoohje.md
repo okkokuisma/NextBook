@@ -3,7 +3,7 @@
 Sovellus on tällä hetkellä komentoriviohjelma.
 
 ## Asennus
-Ohjelmasta on tehty [release](https://github.com/okkokuisma/NextBook/releases/tag/1.0) ekan viikon jälkeen. Tämän asentamalla saa ajettua ohjelmaa helpoiten.
+Ohjelmasta on tehty [release](https://github.com/okkokuisma/NextBook/releases/tag/v2.0) toisen viikon jälkeen. Tämän asentamalla saa ajettua ohjelmaa helpoiten.
 
 Käyttäjä voi myös kloonata repositorion jolloin saa ohjelmakoodin
 
@@ -17,6 +17,8 @@ Jos on kloonannut repositorion niin koodi ajetaan oikeassa kansiossa komennolla 
 ### Käyttöohje ohjelmalle
 Komentoriville tulostuu ohjeet mitä käskyjä voi antaa. Tyhjä rivi lopettaa ohjelman.
 
-Komennolla ```add``` saa lisättyä uuden kirjan. Tälle pitää antaa ensin nimi ja sitten kirjailija.
-
-Komennolla ```list``` saa listattua kaikki kirjat.
+- Komennolla ```add``` saa lisättyä uuden vinkkejä.
+- Komennolla ```list``` saa listattua kaikki vinkit.
+- Komennolla ```update``` saa päivitettyä kaikki vinkkejä.
+- Komennolla ```remove``` saa poistettua vinkin.
+- Komennolla ```filter``` saa listattua vain osan vinkeistä.
