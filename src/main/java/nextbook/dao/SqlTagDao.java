@@ -86,31 +86,22 @@ public class SqlTagDao {
         }
     }
     
-    public ArrayList filterByTag(Tag tag) {
+    public ArrayList filterAllByTag(Tag tag) {
         ArrayList<Clue> clues = new ArrayList<>();
-        clues.addAll(filterBooks(tag));
-        clues.addAll(filterVideos(tag));
+        clues.addAll(filterBooksByTag(tag));
+        clues.addAll(filterVideosByTag(tag));
         
         return clues;
     }
     
-    private ArrayList filterBooks(Tag tag) {
+    private ArrayList filterBooksByTag(Tag tag) {
         try {
             connect();
             PreparedStatement ps = dbconn.prepareStatement("SELECT id, name, author, isbn, comment, year FROM books WHERE id IN (SELECT book_id FROM book_tags WHERE tag_id = ?)");
             ps.setInt(1, tag.getId());
             ResultSet queryResults = ps.executeQuery();
             
-            ArrayList<Book> books = new ArrayList<>();
-            while (queryResults.next()) {
-                Book book = new Book(queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getString(4),
-                        queryResults.getString(5),
-                        queryResults.getInt(6));
-                book.setId(queryResults.getInt(1));
-                books.add(book);
-            }
+            ArrayList<Book> books = SqlBookDao.getQueryResultAsListOfClues(queryResults);
             
             dbconn.close();
             return books;
@@ -120,22 +111,14 @@ public class SqlTagDao {
         } 
     }
     
-    private ArrayList filterVideos(Tag tag) {
+    private ArrayList filterVideosByTag(Tag tag) {
         try {
             connect();
             PreparedStatement ps = dbconn.prepareStatement("SELECT id, name, url, time FROM videos WHERE id IN (SELECT video_id FROM video_tags WHERE tag_id = ?)");
             ps.setInt(1, tag.getId());
             ResultSet queryResults = ps.executeQuery();
-            
-            ArrayList<Video> videos = new ArrayList<>();
-            while (queryResults.next()) {
-                Video video = new Video(queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getInt(4));
-                video.setId(queryResults.getInt(1));
-                videos.add(video);
-            }
-            
+            ArrayList<Video> videos = SqlVideoDao.getQueryResultAsListOfClues(queryResults);
+
             dbconn.close();
             return videos;
         } catch (SQLException ex) {

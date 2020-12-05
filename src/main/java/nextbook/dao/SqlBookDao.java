@@ -53,16 +53,7 @@ public class SqlBookDao {
             Statement ps = dbconn.createStatement();
             ResultSet queryResults = ps.executeQuery("SELECT id, name, author, isbn, comment, year FROM books");
             
-            ArrayList<Book> books = new ArrayList<>();
-            while (queryResults.next()) {
-                Book book = new Book(queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getString(4),
-                        queryResults.getString(5),
-                        queryResults.getInt(6));
-                book.setId(queryResults.getInt(1));
-                books.add(book);
-            }
+            ArrayList<Book> books = getQueryResultAsListOfClues(queryResults);
             
             dbconn.close();
             return books;
@@ -107,6 +98,26 @@ public class SqlBookDao {
         } catch (SQLException ex) {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    protected static ArrayList getQueryResultAsListOfClues(ResultSet queryResults) {
+        ArrayList<Book> books = new ArrayList<>();
+        
+        try {
+            while (queryResults.next()) {
+                Book book = new Book(queryResults.getString(2),
+                        queryResults.getString(3),
+                        queryResults.getString(4),
+                        queryResults.getString(5),
+                        queryResults.getInt(6));
+                book.setId(queryResults.getInt(1));
+                books.add(book);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return books;
     }
     
     private void connect() {

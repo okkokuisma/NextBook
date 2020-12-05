@@ -49,14 +49,7 @@ public class SqlVideoDao {
             Statement ps = dbconn.createStatement();
             ResultSet queryResults = ps.executeQuery("SELECT id, name, url, time FROM videos");
             
-            ArrayList<Video> videos = new ArrayList<>();
-            while (queryResults.next()) {
-                Video video = new Video(queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getInt(4));
-                video.setId(queryResults.getInt(1));
-                videos.add(video);
-            }
+            ArrayList<Video> videos = getQueryResultAsListOfClues(queryResults);
             
             dbconn.close();
             return videos;
@@ -97,6 +90,24 @@ public class SqlVideoDao {
         } catch (SQLException ex) {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    protected static ArrayList getQueryResultAsListOfClues(ResultSet queryResults) {
+        ArrayList<Video> videos = new ArrayList<>();
+        
+        try {
+            while (queryResults.next()) {
+                Video video = new Video(queryResults.getString(2),
+                        queryResults.getString(3),
+                        queryResults.getInt(4));
+                video.setId(queryResults.getInt(1));
+                videos.add(video);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlVideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return videos;
     }
     
     private void connect() {
