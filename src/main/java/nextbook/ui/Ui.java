@@ -1,11 +1,7 @@
 package nextbook.ui;
 
 import nextbook.domain.ClueService;
-import nextbook.domain.Clue;
-import nextbook.domain.Book;
-import nextbook.domain.Video;
 
-import java.util.ArrayList;
 import nextbook.io.IO;
 
 public class Ui {
@@ -17,7 +13,9 @@ public class Ui {
     private Command update;
     private Command remove;
     private Command filter;
-    private Command exit;
+    private Command createTag;
+    private Command listTags;
+    private Command setTag;
 
     public Ui(IO io, ClueService clueService) {
         this.io = io;
@@ -27,15 +25,20 @@ public class Ui {
         this.update = new Update(io, clueService);
         this.filter = new Filter(io, clueService);
         this.remove = new Remove(io, clueService);
-        this.exit = new Exit(io);
+        this.setTag = new SetTag(io, clueService);
+        this.listTags = new ListTags(io);
+        this.createTag = new CreateTag(io);
     }
 
     public void start() {
-        io.print("Give 'add' to add book or video");
+        io.print("Give 'add' to add book, video or blog post");
         io.print("Give 'list' to list all recommendations");
         io.print("Give 'filter' to filter recommendations by type");
         io.print("Give 'update' to update information of recommendation");
         io.print("Give 'remove' to delete recommendation");
+        io.print("Give 'create tag' to add new tag");
+        io.print("Give 'list tags' to show all tags");
+        io.print("Give 'set tag' to give tag to recommendation");
         io.print("Give empty line to exit program");
 
         while (true) {
@@ -65,6 +68,17 @@ public class Ui {
                 remove.execute();
             }
 
+            if (command.equals("create tag")) {
+                createTag.execute();
+            }
+
+            if (command.equals("list tags")) {
+                listTags.execute();
+            }
+
+            if (command.equals("set tag")) {
+                setTag.execute();
+            }
         }
     }
 

@@ -1,18 +1,21 @@
+
 package nextbook.domain;
 
 import java.util.ArrayList;
 
-public class Video extends Clue {
+public class Blog extends Clue {
     private int id;
     private String name;
+    private String author;
     private String link;
-    private int time;
+    private String comment;
     private ArrayList<Tag> tags;
 
-    public Video(String name, String link, int time) {
+    public Blog(String name, String author, String link, String comment) {
         this.name = name;
+        this.author = author;
         this.link = link;
-        this.time = time;
+        this.comment = comment;
         this.tags = new ArrayList();
     }
 
@@ -32,6 +35,14 @@ public class Video extends Clue {
         this.name = name;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public String getLink() {
         return link;
     }
@@ -40,17 +51,17 @@ public class Video extends Clue {
         this.link = link;
     }
 
-    public int getTime() {
-        return time;
+    public String getComment() {
+        return comment;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
     public String toString() {
-        return "name=" + name + ", link=" + link + ", time=" + time;
+        return author + ": " + name + ", " + link;
     }
     
     @Override
@@ -59,19 +70,19 @@ public class Video extends Clue {
             return true;
         }
 
-        if (!(compared instanceof Video)) {
+        if (!(compared instanceof Blog)) {
             return false;
         }
 
-        Video comparedVideo = (Video) compared;
+        Blog comparedBlog = (Blog) compared;
 
-        if (this.name.equals(comparedVideo.name) &&
-            this.link.equals(comparedVideo.link) &&
-            this.time == comparedVideo.time) {
+        if (this.name.equals(comparedBlog.name) &&
+            this.author.equals(comparedBlog.author) &&
+            this.link.equals(comparedBlog.link)) {
             return true;
         }
-
+        
         return false;
     }
+    
 }
-

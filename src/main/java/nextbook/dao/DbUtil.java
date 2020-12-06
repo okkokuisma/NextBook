@@ -43,6 +43,24 @@ public class DbUtil {
                     + "name TEXT,"
                     + "url TEXT,"
                     + "time TEXT)");
+            s.execute("CREATE TABLE IF NOT EXISTS blogs ("
+                    + "id INTEGER PRIMARY KEY,"
+                    + "name TEXT,"
+                    + "author TEXT,"
+                    + "url TEXT,"
+                    + "comment TEXT)");
+            s.execute("CREATE TABLE IF NOT EXISTS tags ("
+                    + "id INTEGER PRIMARY KEY,"
+                    + "tag TEXT");
+            s.execute("CREATE TABLE IF NOT EXISTS book_tags ("
+                    + "book_id INTEGER,"
+                    + "tag_id INTEGER");
+            s.execute("CREATE TABLE IF NOT EXISTS video_tags ("
+                    + "video_id INTEGER,"
+                    + "tag_id INTEGER");
+            s.execute("CREATE TABLE IF NOT EXISTS blog_tags ("
+                    + "blog_id INTEGER,"
+                    + "tag_id INTEGER");
 
             dbconn.close();
         } catch (Exception e) {
