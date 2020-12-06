@@ -6,14 +6,17 @@ import nextbook.domain.Clue;
 import nextbook.domain.Tag;
 
 import java.util.ArrayList;
+import nextbook.domain.TagService;
 
 public class SetTag extends Command {
 
     private ClueService clueService;
+    private TagService tagService;
 
-    public SetTag(IO io, ClueService clueService) {
+    public SetTag(IO io, ClueService clueService, TagService tagService) {
         super(io);
         this.clueService = clueService;
+        this.tagService = tagService;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class SetTag extends Command {
         }
         Clue clue = clues.get(id1 - 1);
 
-        ArrayList<Tag> tags = new ArrayList(); // Change later
+        ArrayList<Tag> tags = tagService.readTags();
         for (int id = 1; id <= tags.size(); id++) {
             io.print("id (" + id + "), " + tags.get(id - 1));;
         }
@@ -42,7 +45,8 @@ public class SetTag extends Command {
         }
         Tag tag = tags.get(id2 - 1);
 
-        io.print("Add tag " + tag + "to clue " + clue + " in later implementation");
+        tagService.setTag(clue, tag);
+        io.print("Tag set successfully");
     }
 
 }

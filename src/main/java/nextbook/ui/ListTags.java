@@ -3,16 +3,25 @@ package nextbook.ui;
 import nextbook.io.IO;
 
 import java.util.ArrayList;
+import nextbook.domain.Tag;
+import nextbook.domain.TagService;
 
 public class ListTags extends Command {
+    
+    private TagService tagService;
 
-    public ListTags(IO io) {
+    public ListTags(IO io, TagService tagService) {
         super(io);
+        this.tagService = tagService;
     }
 
     @Override
     public void execute() {
-        io.print("This will list all tags");
+        ArrayList<Tag> tags = tagService.readTags();
+        
+        for (Tag tag : tags) {
+            io.print(tag);
+        }
     }
 
 }

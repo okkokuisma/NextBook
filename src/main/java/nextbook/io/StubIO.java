@@ -3,6 +3,7 @@ package nextbook.io;
 import java.util.ArrayList;
 import java.util.List;
 import nextbook.domain.Clue;
+import nextbook.domain.Tag;
 
 public class StubIO implements IO {
     private List<String> lines;
@@ -41,6 +42,10 @@ public class StubIO implements IO {
 
     public void print(Clue toPrint) {
         //System.out.println("clue " + toPrint);
+        prints.add(toPrint.toString());
+    }
+    
+    public void print(Tag toPrint) {
         prints.add(toPrint.toString());
     }
 

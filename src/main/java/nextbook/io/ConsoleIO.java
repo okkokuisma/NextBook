@@ -3,6 +3,7 @@ package nextbook.io;
 
 import java.util.Scanner;
 import nextbook.domain.Clue;
+import nextbook.domain.Tag;
 
 public class ConsoleIO implements IO {
     private Scanner scanner = new Scanner(System.in);
@@ -12,6 +13,10 @@ public class ConsoleIO implements IO {
     }
     
     public void print(Clue toPrint) {
+        System.out.println(toPrint);
+    }
+    
+    public void print(Tag toPrint) {
         System.out.println(toPrint);
     }
     
