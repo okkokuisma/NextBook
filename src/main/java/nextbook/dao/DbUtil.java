@@ -55,7 +55,6 @@ public class DbUtil {
 
             dbconn.close();
         } catch (Exception e) {
-            e.printStackTrace();
         }  
     }
     
