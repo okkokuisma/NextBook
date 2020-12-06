@@ -20,17 +20,24 @@ public class ConsoleIO implements IO {
     }
 
     public int readInt(String prompt) {
-        System.out.println(prompt);
+        print(prompt);
         
-        String line = scanner.nextLine();
-        if (!line.isEmpty()) {
-            return Integer.parseInt(line);
+        int x = 0;
+        while (true) {
+            String line = scanner.nextLine();
+
+            try {
+                x = Integer.parseInt(line);
+                break;
+            } catch (NumberFormatException e) {
+                print("Invalid number format, try again!");
+            }
         }
-        return -1;
+        return x;
     }
 
     public String readLine(String prompt) {
-        System.out.println(prompt);
+        print(prompt);
         return scanner.nextLine();
     }
 }

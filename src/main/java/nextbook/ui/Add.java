@@ -29,13 +29,7 @@ public class Add extends Command {
             String author = io.readLine("Give author of the book");
             String isbn = io.readLine("Give ISBN of the book");
             String comment = io.readLine("Give comments to the book (all in one line)");
-            int year = 0;
-            try {
-                year = io.readInt("Give year of publish of the book");
-            } catch (NumberFormatException ex) {
-                System.out.println("Invalid input! You have to enter a number");
-                return;
-            }
+            int year = io.readInt("Give year of publish of the book");
             Clue book = new Book(name, author, isbn, comment, year);
             clueService.createClue(book);
             io.print("New book added");
