@@ -50,7 +50,8 @@ public class Video extends Clue {
 
     @Override
     public String toString() {
-        return "name=" + name + ", link=" + link + ", time=" + time;
+        //return "name=" + name + ", link=" + link + ", time=" + time;
+        return name + ", " + link;
     }
     
     @Override
