@@ -59,7 +59,7 @@ public class SqlTagDao implements TagDao {
     public void setTag(Clue clue, Tag tag) {
         try {
             connect();
-            PreparedStatement ps = dbconn.prepareStatement("");
+            PreparedStatement ps = null;
 
             if (clue instanceof Book) {
                 ps = dbconn.prepareStatement("INSERT INTO book_tags (book_id, tag_id) VALUES (?,?)");
@@ -84,7 +84,7 @@ public class SqlTagDao implements TagDao {
     public void removeTagFromClue(Clue clue, Tag tag) {
         try {
             connect();
-            PreparedStatement ps = dbconn.prepareStatement("");
+            PreparedStatement ps = null;
 
             if (clue instanceof Book) {
                 ps = dbconn.prepareStatement("DELETE FROM book_tags WHERE book_id = ? AND tag_id = ?");
