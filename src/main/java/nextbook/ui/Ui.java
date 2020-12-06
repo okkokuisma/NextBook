@@ -1,6 +1,7 @@
 package nextbook.ui;
 
 import nextbook.domain.ClueService;
+import nextbook.domain.TagService;
 
 import nextbook.io.IO;
 
@@ -8,6 +9,7 @@ public class Ui {
 
     private IO io;
     private ClueService clueService;
+    private TagService tagService;
     private Command add;
     private Command list;
     private Command update;
@@ -17,17 +19,18 @@ public class Ui {
     private Command listTags;
     private Command setTag;
 
-    public Ui(IO io, ClueService clueService) {
+    public Ui(IO io, ClueService clueService, TagService tagService) {
         this.io = io;
         this.clueService = clueService;
+        this.tagService = tagService;
         this.add = new Add(io, clueService);
         this.list = new List(io, clueService);
         this.update = new Update(io, clueService);
         this.filter = new Filter(io, clueService);
         this.remove = new Remove(io, clueService);
         this.setTag = new SetTag(io, clueService);
+        this.createTag = new CreateTag(io, tagService);
         this.listTags = new ListTags(io);
-        this.createTag = new CreateTag(io);
     }
 
     public void start() {

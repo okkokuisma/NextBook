@@ -1,33 +1,40 @@
 package nextbook;
 
+import nextbook.domain.ClueService;
+import nextbook.domain.TagService;
+import nextbook.io.StubIO;
+import nextbook.ui.Ui;
+import nextbook.dao.DbUtil;
+import nextbook.dao.ClueDao;
+import nextbook.dao.TagDao;
+import nextbook.dao.SqlClueDao;
+import nextbook.dao.SqlTagDao;
+
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import nextbook.dao.ClueDao;
-import nextbook.domain.ClueService;
-import nextbook.io.StubIO;
-import nextbook.ui.Ui;
-import io.cucumber.java.After;
-import nextbook.dao.DbUtil;
-import nextbook.dao.SqlClueDao;
-
-import static org.junit.Assert.*;
 
 public class Stepdefs {
     StubIO io;
     Ui ui;
     List<String> inputLines;
         
-    ClueService service;
+    ClueService clueService;
+    TagService tagService;
     
     @Before
     public void setup() {
-        ClueDao dao = new SqlClueDao(new DbUtil(true));
-        this.service = new ClueService(dao);
+        ClueDao clueDao = new SqlClueDao(new DbUtil(true));
+        TagDao tagDao = new SqlTagDao(new DbUtil(true));
+        this.clueService = new ClueService(clueDao);
+        this.tagService = new TagService(tagDao);
         this.inputLines = new ArrayList<>();
     }
     
@@ -83,8 +90,15 @@ public class Stepdefs {
         addVideoVariables(name, link, time);
     }
     
-    @Given("command remove video is selected")
-    public void commandRemoveVideoIsSelected() {
+    @Given("blog {string} with author {string}, link {string} and comment {string} is created")
+    public void blogWithAuthorLinkAndCommentIsCreated(String name, String author, String link, String comment) {
+        inputLines.add("add");
+        inputLines.add("3");
+        addBlogVariables(name, author, link, comment);
+    }
+    
+    @Given("command remove is selected")
+    public void commandRemoveIsSelected() {
         inputLines.add("remove");
     }
     
@@ -97,6 +111,12 @@ public class Stepdefs {
     @When("a valid name {string}, link {string} and time {string} are entered")
     public void aValidNameLinkAndTimeAreEntered(String name, String link, String time) {
         addVideoVariables(name, link, time);
+        uiStart();
+    }
+    
+    @When("a valid name {string}, author {string}, link {string} and comment {string} are entered")
+    public void aValidNameAuthorLinkAndCommentAreEntered(String name, String author, String link, String comment) {
+        addBlogVariables(name, author, link, comment);
         uiStart();
     }
     
@@ -126,6 +146,19 @@ public class Stepdefs {
         uiStart();
     }
     
+    @When("name is updated to {string}, author to {string}, link to {string} and comment to {string}")
+    public void nameIsUpdatedToAuthorToLinkToAndCommentTo(String name, String author, String link, String comment) {
+        inputLines.add("y");
+        inputLines.add(name);
+        inputLines.add("y");
+        inputLines.add(author);
+        inputLines.add("y");
+        inputLines.add(link);
+        inputLines.add("y");
+        inputLines.add(comment);
+        uiStart();
+    }
+    
     @Then("system will response with {string}")
     public void systemWillResponseWith(String expectedOutput) {
         System.out.println("lines" + this.inputLines);
@@ -137,6 +170,13 @@ public class Stepdefs {
     public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2) {
         assertTrue(io.getPrints().contains(expectedOutput1));
         assertTrue(io.getPrints().contains(expectedOutput2));
+    }
+    
+    @Then("system will response with {string}, {string} and {string}")
+    public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2, String expectedOutput3) {
+        assertTrue(io.getPrints().contains(expectedOutput1));
+        assertTrue(io.getPrints().contains(expectedOutput2));
+        assertTrue(io.getPrints().contains(expectedOutput3));
     }
     
     public void addBooksVariables(String name, String author, String isbn, String year, String comment) {
@@ -153,9 +193,16 @@ public class Stepdefs {
         inputLines.add(time);
     }
     
+    private void addBlogVariables(String name, String author, String link, String comment) {
+        inputLines.add(name);
+        inputLines.add(author);
+        inputLines.add(link);
+        inputLines.add(comment);
+    }
+    
     public void uiStart() {
         io = new StubIO(inputLines);
-        ui = new Ui(io, service);
+        ui = new Ui(io, clueService, tagService);
         ui.start();
     }  
 }
