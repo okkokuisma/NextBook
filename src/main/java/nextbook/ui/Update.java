@@ -41,7 +41,7 @@ public class Update extends Command {
         }
       
         if (clue instanceof Blog) {
-          updateBlog(clue);
+            updateBlog(clue);
         }
     }
 
