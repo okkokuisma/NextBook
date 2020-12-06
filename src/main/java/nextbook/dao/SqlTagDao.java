@@ -92,7 +92,7 @@ public class SqlTagDao {
 
         clues.addAll(filterBooksByTag(tag));
         clues.addAll(filterVideosByTag(tag));
-        clues.addAll(filterBlogs(tag));
+        clues.addAll(filterBlogsByTag(tag));
         
         return clues;
     }
@@ -130,23 +130,14 @@ public class SqlTagDao {
         } 
     }
     
-    private ArrayList filterBlogs(Tag tag) {
+    private ArrayList filterBlogsByTag(Tag tag) {
         try {
             connect();
             PreparedStatement ps = dbconn.prepareStatement("SELECT id, name, author, url, comment FROM blogs WHERE id IN (SELECT blog_id FROM blog_tags WHERE tag_id = ?)");
             ps.setInt(1, tag.getId());
             ResultSet queryResults = ps.executeQuery();
             
-            ArrayList<Blog> blogs = new ArrayList<>();
-            while (queryResults.next()) {
-                Blog blog = new Blog(
-                        queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getString(4),
-                        queryResults.getString(5));
-                blog.setId(queryResults.getInt(1));
-                blogs.add(blog);
-            }
+            ArrayList<Blog> blogs = SqlBlogDao.getQueryResultAsListOfClues(queryResults);
             
             dbconn.close();
             return blogs;

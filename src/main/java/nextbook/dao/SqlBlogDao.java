@@ -42,15 +42,7 @@ public class SqlBlogDao {
             Statement ps = dbconn.createStatement();
             ResultSet queryResults = ps.executeQuery("SELECT id, name, author, url, comment FROM blogs");
             
-            ArrayList<Blog> blogs = new ArrayList<>();
-            while (queryResults.next()) {
-                Blog blog = new Blog(queryResults.getString(2),
-                        queryResults.getString(3),
-                        queryResults.getString(4),
-                        queryResults.getString(5));
-                blog.setId(queryResults.getInt(1));
-                blogs.add(blog);
-            }
+            ArrayList<Blog> blogs = getQueryResultAsListOfClues(queryResults);
             
             dbconn.close();
             return blogs;
@@ -93,6 +85,25 @@ public class SqlBlogDao {
         } catch (SQLException ex) {
             Logger.getLogger(SqlBlogDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    protected static ArrayList getQueryResultAsListOfClues(ResultSet queryResults) {
+        ArrayList<Blog> blogs = new ArrayList<>();
+        
+        try {
+            while (queryResults.next()) {
+                Blog blog = new Blog(queryResults.getString(2),
+                        queryResults.getString(3),
+                        queryResults.getString(4),
+                        queryResults.getString(5));
+                blog.setId(queryResults.getInt(1));
+                blogs.add(blog);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlBlogDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return blogs;
     }
     
     private void connect() {
