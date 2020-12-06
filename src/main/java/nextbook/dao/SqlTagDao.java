@@ -67,6 +67,9 @@ public class SqlTagDao implements TagDao {
             } else if (clue instanceof Video) {
                 ps = dbconn.prepareStatement("INSERT INTO video_tags (video_id, tag_id) VALUES (?,?)");
                 ps.setInt(1, ((Video) clue).getId());
+            } else if (clue instanceof Blog) {
+                ps = dbconn.prepareStatement("INSERT INTO blog_tags (blog_id, tag_id) VALUES (?,?)");
+                ps.setInt(1, ((Blog) clue).getId());
             }
 
             ps.setInt(2, tag.getId());
