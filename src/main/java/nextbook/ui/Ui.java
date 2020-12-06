@@ -16,8 +16,8 @@ public class Ui {
     private Command remove;
     private Command filter;
     private Command createTag;
+    private Command listTags;
     private Command setTag;
-    private Command exit;
 
     public Ui(IO io, ClueService clueService, TagService tagService) {
         this.io = io;
@@ -30,7 +30,7 @@ public class Ui {
         this.remove = new Remove(io, clueService);
         this.setTag = new SetTag(io, clueService);
         this.createTag = new CreateTag(io, tagService);
-        this.exit = new Exit(io);
+        this.listTags = new ListTags(io);
     }
 
     public void start() {
@@ -39,8 +39,9 @@ public class Ui {
         io.print("Give 'filter' to filter recommendations by type");
         io.print("Give 'update' to update information of recommendation");
         io.print("Give 'remove' to delete recommendation");
-        io.print("Give 'create tag' to delete recommendation");
-        io.print("Give 'set tag' to delete recommendation");
+        io.print("Give 'create tag' to add new tag");
+        io.print("Give 'list tags' to show all tags");
+        io.print("Give 'set tag' to give tag to recommendation");
         io.print("Give empty line to exit program");
 
         while (true) {
@@ -72,6 +73,10 @@ public class Ui {
 
             if (command.equals("create tag")) {
                 createTag.execute();
+            }
+
+            if (command.equals("list tags")) {
+                listTags.execute();
             }
 
             if (command.equals("set tag")) {

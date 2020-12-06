@@ -25,6 +25,11 @@ public class Update extends Command {
             io.print("id (" + id + "), " + clues.get(id - 1));;
         }
         int id = io.readInt("Give id of clue to update");
+
+        if (id < 1 || id > clues.size()) {
+            io.print("Invalid index");
+            return;
+        }
         Clue clue = clues.get(id - 1);
 
         if (clue instanceof Book) {
@@ -41,7 +46,6 @@ public class Update extends Command {
     }
 
     public void updateBook(Clue clue) {
-
         Book book = (Book) clue;
         if (io.readLine("Do you want change name of book (y/n)").equals("y")) {
             book.setName(io.readLine("Give new name of the book"));
@@ -55,17 +59,12 @@ public class Update extends Command {
         if (io.readLine("Do you want change comments of book (y/n)").equals("y")) {
             book.setComment(io.readLine("Give new comments of the book (all in same line)"));
         }
-        try {
-            if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
-                book.setYearPublished(io.readInt("Give new publish year of the book"));
-            }
-        } catch (NumberFormatException ex) {
-            System.out.println("Invalid input! You have to enter a number");
-            return;
+        if (io.readLine("Do you want change publish year of book (y/n)").equals("y")) {
+            book.setYearPublished(io.readInt("Give new publish year of the book"));
         }
+
         clueService.update(book);
         io.print("Updated successfully");
-
     }
 
     public void updateVideo(Clue clue) {
