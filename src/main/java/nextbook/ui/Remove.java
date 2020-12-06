@@ -27,10 +27,14 @@ public class Remove extends Command {
         try {
             id = io.readInt("Give id of clue to update");;
         } catch (NumberFormatException ex) {
-            System.out.println("Invalid input! You have to enter a number");
+            io.print("Invalid input! You have to enter a number");
             return;
         }
 
+        if (id < 1 || id > clues.size()) {
+            io.print("Invalid index");
+            return;
+        }
         Clue clue = clues.get(id - 1);
 
         clueService.remove(clue);
