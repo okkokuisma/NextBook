@@ -15,7 +15,6 @@ public class Ui {
     private Command filter;
     private Command createTag;
     private Command setTag;
-    private Command exit;
 
     public Ui(IO io, ClueService clueService) {
         this.io = io;
@@ -27,7 +26,6 @@ public class Ui {
         this.remove = new Remove(io, clueService);
         this.setTag = new SetTag(io, clueService);
         this.createTag = new CreateTag(io);
-        this.exit = new Exit(io);
     }
 
     public void start() {
