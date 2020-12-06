@@ -1,33 +1,40 @@
 package nextbook;
 
+import nextbook.domain.ClueService;
+import nextbook.domain.TagService;
+import nextbook.io.StubIO;
+import nextbook.ui.Ui;
+import nextbook.dao.DbUtil;
+import nextbook.dao.ClueDao;
+import nextbook.dao.TagDao;
+import nextbook.dao.SqlClueDao;
+import nextbook.dao.SqlTagDao;
+
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import nextbook.dao.ClueDao;
-import nextbook.domain.ClueService;
-import nextbook.io.StubIO;
-import nextbook.ui.Ui;
-import io.cucumber.java.After;
-import nextbook.dao.DbUtil;
-import nextbook.dao.SqlClueDao;
-
-import static org.junit.Assert.*;
 
 public class Stepdefs {
     StubIO io;
     Ui ui;
     List<String> inputLines;
         
-    ClueService service;
+    ClueService clueService;
+    TagService tagService;
     
     @Before
     public void setup() {
-        ClueDao dao = new SqlClueDao(new DbUtil(true));
-        this.service = new ClueService(dao);
+        ClueDao clueDao = new SqlClueDao(new DbUtil(true));
+        TagDao tagDao = new SqlTagDao(new DbUtil(true));
+        this.clueService = new ClueService(clueDao);
+        this.tagService = new TagService(tagDao);
         this.inputLines = new ArrayList<>();
     }
     
@@ -195,7 +202,7 @@ public class Stepdefs {
     
     public void uiStart() {
         io = new StubIO(inputLines);
-        ui = new Ui(io, service);
+        ui = new Ui(io, clueService, tagService);
         ui.start();
     }  
 }
