@@ -14,7 +14,7 @@ import nextbook.domain.Clue;
 import nextbook.domain.Tag;
 import nextbook.domain.Video;
 
-public class SqlTagDao {
+public class SqlTagDao implements TagDao {
     private Connection dbconn;
     private DbUtil dbUtil;
 
@@ -77,12 +77,38 @@ public class SqlTagDao {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void removeTagFromClue(Clue clue, Tag tag) {
+        try {
+            connect();
+            PreparedStatement ps = dbconn.prepareStatement("");
 
-    public void deleteTag(int id) {
+            if (clue instanceof Book) {
+                ps = dbconn.prepareStatement("DELETE FROM book_tags WHERE book_id = ? AND tag_id = ?");
+                ps.setInt(1, ((Book) clue).getId());
+            } else if (clue instanceof Video) {
+                ps = dbconn.prepareStatement("DELETE FROM video_tags WHERE video_id = ? AND tag_id = ?");
+                ps.setInt(1, ((Video) clue).getId());
+            } else if (clue instanceof Blog) {
+                ps = dbconn.prepareStatement("DELETE FROM blog_tags WHERE blog_id = ? AND tag_id = ?");
+                ps.setInt(1, ((Blog) clue).getId());
+            }
+
+            ps.setInt(2, tag.getId());
+            ps.execute();
+
+            dbconn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    public void remove(int id) {
         try {
             connect();
 
-            PreparedStatement ps1 = dbconn.prepareStatement("DELETE FROM book_tags, video_tags WHERE tag_id = ?");
+            PreparedStatement ps1 = dbconn.prepareStatement("DELETE FROM book_tags, video_tags, blog_tags WHERE tag_id = ?");
             ps1.setInt(1, id);
             ps1.execute();
 
@@ -96,7 +122,7 @@ public class SqlTagDao {
         }
     }
 
-    public ArrayList filterAllByTag(Tag tag) {
+    public ArrayList filterByTag(Tag tag) {
         ArrayList<Clue> clues = new ArrayList<>();
 
         clues.addAll(filterBooksByTag(tag));
@@ -159,4 +185,5 @@ public class SqlTagDao {
     private void connect() {
         dbconn = dbUtil.connect();
     }
+
 }
