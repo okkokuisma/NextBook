@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nextbook.domain;
 
 import java.util.ArrayList;
 import nextbook.dao.TagDao;
 
-/**
- *
- * @author okkokuisma
- */
 public class TagService {
+
     TagDao dao;
 
     public TagService(TagDao dao) {
@@ -42,4 +34,5 @@ public class TagService {
     public void removeTagFromClue(Clue clue, Tag tag) {
         dao.removeTagFromClue(clue, tag);
     }
+
 }
