@@ -83,8 +83,15 @@ public class Stepdefs {
         addVideoVariables(name, link, time);
     }
     
-    @Given("command remove video is selected")
-    public void commandRemoveVideoIsSelected() {
+    @Given("blog {string} with author {string}, link {string} and comment {string} is created")
+    public void blogWithAuthorLinkAndCommentIsCreated(String name, String author, String link, String comment) {
+        inputLines.add("add");
+        inputLines.add("3");
+        addBlogVariables(name, author, link, comment);
+    }
+    
+    @Given("command remove is selected")
+    public void commandRemoveIsSelected() {
         inputLines.add("remove");
     }
     
@@ -97,6 +104,12 @@ public class Stepdefs {
     @When("a valid name {string}, link {string} and time {string} are entered")
     public void aValidNameLinkAndTimeAreEntered(String name, String link, String time) {
         addVideoVariables(name, link, time);
+        uiStart();
+    }
+    
+    @When("a valid name {string}, author {string}, link {string} and comment {string} are entered")
+    public void aValidNameAuthorLinkAndCommentAreEntered(String name, String author, String link, String comment) {
+        addBlogVariables(name, author, link, comment);
         uiStart();
     }
     
@@ -126,6 +139,19 @@ public class Stepdefs {
         uiStart();
     }
     
+    @When("name is updated to {string}, author to {string}, link to {string} and comment to {string}")
+    public void nameIsUpdatedToAuthorToLinkToAndCommentTo(String name, String author, String link, String comment) {
+        inputLines.add("y");
+        inputLines.add(name);
+        inputLines.add("y");
+        inputLines.add(author);
+        inputLines.add("y");
+        inputLines.add(link);
+        inputLines.add("y");
+        inputLines.add(comment);
+        uiStart();
+    }
+    
     @Then("system will response with {string}")
     public void systemWillResponseWith(String expectedOutput) {
         System.out.println("lines" + this.inputLines);
@@ -137,6 +163,13 @@ public class Stepdefs {
     public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2) {
         assertTrue(io.getPrints().contains(expectedOutput1));
         assertTrue(io.getPrints().contains(expectedOutput2));
+    }
+    
+    @Then("system will response with {string}, {string} and {string}")
+    public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2, String expectedOutput3) {
+        assertTrue(io.getPrints().contains(expectedOutput1));
+        assertTrue(io.getPrints().contains(expectedOutput2));
+        assertTrue(io.getPrints().contains(expectedOutput3));
     }
     
     public void addBooksVariables(String name, String author, String isbn, String year, String comment) {
@@ -151,6 +184,13 @@ public class Stepdefs {
         inputLines.add(name);
         inputLines.add(link);
         inputLines.add(time);
+    }
+    
+    private void addBlogVariables(String name, String author, String link, String comment) {
+        inputLines.add(name);
+        inputLines.add(author);
+        inputLines.add(link);
+        inputLines.add(comment);
     }
     
     public void uiStart() {

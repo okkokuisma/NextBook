@@ -13,3 +13,10 @@ Feature: A clue can be updated
         And   id "1" is selected
         When  name is updated to "Keksi" and link to "https://www.youtube.com/" and time to "32"
         Then  system will response with "Updated successfully"
+
+    Scenario: updating a blog is successful
+        Given blog "Testi" with author "Testi Testinen", link "https://www.hjkhkj.fi/" and comment "testi" is created
+        And   command update is selected
+        And   id "1" is selected
+        When  name is updated to "Keksi", author to "Keksi Keksinen", link to "https://www.hjkkhkj.fi/" and comment to "update test"
+        Then  system will response with "Updated successfully"
