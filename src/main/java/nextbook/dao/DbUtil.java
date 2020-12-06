@@ -43,6 +43,12 @@ public class DbUtil {
                     + "name TEXT,"
                     + "url TEXT,"
                     + "time TEXT)");
+            s.execute("CREATE TABLE IF NOT EXISTS blogs ("
+                    + "id INTEGER PRIMARY KEY,"
+                    + "name TEXT,"
+                    + "author TEXT,"
+                    + "url TEXT,"
+                    + "comment TEXT)");
             s.execute("CREATE TABLE IF NOT EXISTS tags ("
                     + "id INTEGER PRIMARY KEY,"
                     + "tag TEXT");

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nextbook.domain.Blog;
 import nextbook.domain.Book;
 import nextbook.domain.Clue;
 import nextbook.domain.Tag;
@@ -97,8 +98,10 @@ public class SqlTagDao {
 
     public ArrayList filterAllByTag(Tag tag) {
         ArrayList<Clue> clues = new ArrayList<>();
+
         clues.addAll(filterBooksByTag(tag));
         clues.addAll(filterVideosByTag(tag));
+        clues.addAll(filterBlogsByTag(tag));
 
         return clues;
     }
@@ -134,6 +137,23 @@ public class SqlTagDao {
             Logger.getLogger(SqlBookDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } 
+    }
+
+    private ArrayList filterBlogsByTag(Tag tag) {
+        try {
+            connect();
+            PreparedStatement ps = dbconn.prepareStatement("SELECT id, name, author, url, comment FROM blogs WHERE id IN (SELECT blog_id FROM blog_tags WHERE tag_id = ?)");
+            ps.setInt(1, tag.getId());
+            ResultSet queryResults = ps.executeQuery();
+            
+            ArrayList<Blog> blogs = SqlBlogDao.getQueryResultAsListOfClues(queryResults);
+            
+            dbconn.close();
+            return blogs;
+        } catch (SQLException ex) {
+            Logger.getLogger(SqlBlogDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     private void connect() {
