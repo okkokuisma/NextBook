@@ -111,13 +111,19 @@ public class SqlTagDao implements TagDao {
         try {
             connect();
 
-            PreparedStatement ps1 = dbconn.prepareStatement("DELETE FROM book_tags, video_tags, blog_tags WHERE tag_id = ?");
+            PreparedStatement ps1 = dbconn.prepareStatement("DELETE FROM book_tags WHERE tag_id = ?");
+            PreparedStatement ps2 = dbconn.prepareStatement("DELETE FROM video_tags WHERE tag_id = ?");
+            PreparedStatement ps3 = dbconn.prepareStatement("DELETE FROM blog_tags WHERE tag_id = ?");
             ps1.setInt(1, id);
-            ps1.execute();
-
-            PreparedStatement ps2 = dbconn.prepareStatement("DELETE FROM tags WHERE id = ?");
             ps2.setInt(1, id);
+            ps3.setInt(1, id);
+            ps1.execute();
             ps2.execute();
+            ps3.execute();
+
+            PreparedStatement ps4 = dbconn.prepareStatement("DELETE FROM tags WHERE id = ?");
+            ps4.setInt(1, id);
+            ps4.execute();
 
             dbconn.close();
         } catch (SQLException ex) {

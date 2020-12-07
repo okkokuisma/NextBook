@@ -18,6 +18,8 @@ public class Ui {
     private Command createTag;
     private Command listTags;
     private Command setTag;
+    private Command removeTag;
+    private Command deleteTag;
 
     public Ui(IO io, ClueService clueService, TagService tagService) {
         this.io = io;
@@ -31,6 +33,8 @@ public class Ui {
         this.setTag = new SetTag(io, clueService, tagService);
         this.createTag = new CreateTag(io, tagService);
         this.listTags = new ListTags(io, tagService);
+        this.removeTag = new RemoveTag(io, clueService, tagService);
+        this.deleteTag = new DeleteTag(io, tagService);
     }
 
     public void start() {
@@ -81,6 +85,13 @@ public class Ui {
 
             if (command.equals("set tag")) {
                 setTag.execute();
+            }
+
+            if (command.equals("remove tag")) {
+                removeTag.execute();
+            }
+            if (command.equals("delete tag")) {
+                deleteTag.execute();
             }
         }
     }
