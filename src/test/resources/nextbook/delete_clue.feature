@@ -17,3 +17,14 @@ Feature: A clue can be deleted
         And   command remove is selected
         And   id "1" is selected for removing
         Then  system will response with "Removed successfully"
+
+    Scenario: cannot delete non-existing clue
+        Given command remove is selected
+        And   id "1" is selected for removing
+        Then  system will response with "Invalid index"
+
+    Scenario: cannot give index out of boundary
+        Given blog "Testi" with author "Testi Testinen", link "https://www.hjkhkj.fi/" and comment "testi" is created
+        And   command remove is selected
+        And   id "0" is selected for removing
+        Then  system will response with "Invalid index"

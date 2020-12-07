@@ -170,6 +170,11 @@ public class Stepdefs {
         uiStart();
     }
     
+    @When("nothing is updated")
+    public void nothingIsUpdated() {
+        uiStart();
+    }
+    
     @Then("system will response with {string}")
     public void systemWillResponseWith(String expectedOutput) {
         System.out.println("lines" + this.inputLines);
