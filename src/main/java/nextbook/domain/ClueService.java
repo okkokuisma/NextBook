@@ -21,7 +21,7 @@ public class ClueService {
     public ArrayList filterClues(String type) {
         return dao.filterClue(type);
     }
-  
+
     public void remove(Clue clue) {
         dao.remove(clue);
     }

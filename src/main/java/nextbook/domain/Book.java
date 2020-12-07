@@ -72,6 +72,13 @@ public class Book extends Clue {
         this.yearPublished = yearPublished;
     }
 
+    public boolean hasTag(Tag tag) {
+        if (tags.contains(tag)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return author + ": " + name + ", " + isbn + ", " + yearPublished;

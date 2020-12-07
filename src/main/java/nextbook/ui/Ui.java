@@ -28,7 +28,7 @@ public class Ui {
         this.add = new Add(io, clueService);
         this.list = new List(io, clueService);
         this.update = new Update(io, clueService);
-        this.filter = new Filter(io, clueService);
+        this.filter = new Filter(io, clueService, tagService);
         this.remove = new Remove(io, clueService);
         this.setTag = new SetTag(io, clueService, tagService);
         this.createTag = new CreateTag(io, tagService);

@@ -23,7 +23,7 @@ public class TagService {
         dao.remove(id);
     }
     
-    public ArrayList filterCluesByTag(Clue clue, Tag tag) {
+    public ArrayList filterCluesByTag(Tag tag) {
         return dao.filterByTag(tag);
     }
     

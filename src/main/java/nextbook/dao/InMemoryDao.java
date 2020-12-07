@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nextbook.dao;
 
 import java.util.ArrayList;
 import nextbook.domain.Clue;
+import nextbook.domain.Tag;
 
-/**
- *
- * @author okkokuisma
- */
 public class InMemoryDao implements ClueDao {
     ArrayList<Clue> clues;
     ArrayList<Clue> filter;

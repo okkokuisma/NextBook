@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nextbook.dao;
 
-/**
- *
- * @author pate
- */
 import java.sql.*;
 import java.util.ArrayList;
 import nextbook.domain.Blog;
 import nextbook.domain.Book;
 import nextbook.domain.Clue;
 import nextbook.domain.Video;
+import nextbook.domain.Tag;
 
 public class SqlClueDao implements ClueDao {
     SqlBookDao bookDao;
@@ -62,7 +54,7 @@ public class SqlClueDao implements ClueDao {
         }
         return clues;
     }
-    
+
     @Override
     public void remove(Clue clue) {
         if (clue instanceof Book) {
