@@ -17,8 +17,8 @@ Jos on kloonannut repositorion niin koodi ajetaan oikeassa kansiossa komennolla 
 ### Käyttöohje ohjelmalle
 Komentoriville tulostuu ohjeet mitä käskyjä voi antaa. Tyhjä rivi lopettaa ohjelman.
 
-- Komennolla ```add``` saa lisättyä uuden vinkkejä.
+- Komennolla ```add``` saa lisättyä uuden vinkkin.
 - Komennolla ```list``` saa listattua kaikki vinkit.
-- Komennolla ```update``` saa päivitettyä kaikki vinkkejä.
+- Komennolla ```update``` saa päivitettyä halutun vinkin.
 - Komennolla ```remove``` saa poistettua vinkin.
 - Komennolla ```filter``` saa listattua vain osan vinkeistä.
