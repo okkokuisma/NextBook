@@ -46,6 +46,8 @@ public class Ui {
         io.print("Give 'create tag' to add new tag");
         io.print("Give 'list tags' to show all tags");
         io.print("Give 'set tag' to give tag to recommendation");
+        io.print("Give 'remove tag' to remove tag from recommendation");
+        io.print("Give 'delete tag' to delete tag");
         io.print("Give empty line to exit program");
 
         while (true) {
