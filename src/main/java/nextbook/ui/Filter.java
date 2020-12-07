@@ -34,6 +34,8 @@ public class Filter extends Command {
         int type = io.readInt("Filter by tag (1), or type (2)");
         if (type == TAG) {
             filterByTag();
+        } else if (type == TYPE) {
+            filterByType();
         }
     }
 

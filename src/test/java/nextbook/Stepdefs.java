@@ -73,6 +73,7 @@ public class Stepdefs {
     @Given("command filter is selected")
     public void commandFilterIsSelected() {
         inputLines.add("filter");
+        inputLines.add("2");
     }
     
     @Given("id {string} is selected for removing")
