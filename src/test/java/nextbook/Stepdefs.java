@@ -70,6 +70,11 @@ public class Stepdefs {
         inputLines.add(string);
     }
     
+    @Given("command filter is selected")
+    public void commandFilterIsSelected() {
+        inputLines.add("filter");
+    }
+    
     @Given("id {string} is selected for removing")
     public void idIsSelectedForRemoving(String string) {
         inputLines.add(string);
@@ -159,6 +164,12 @@ public class Stepdefs {
         uiStart();
     }
     
+    @When("type {string} is selected")
+    public void typeIsSelected(String string) {
+        inputLines.add(string);
+        uiStart();
+    }
+    
     @Then("system will response with {string}")
     public void systemWillResponseWith(String expectedOutput) {
         System.out.println("lines" + this.inputLines);
@@ -166,12 +177,13 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains(expectedOutput));
     }
     
-    @Then("system will response with {string} and {string}")
-    public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2) {
-        assertTrue(io.getPrints().contains(expectedOutput1));
-        assertTrue(io.getPrints().contains(expectedOutput2));
+    @Then("system will not response with {string}")
+    public void systemWillNotResponseWith(String string) {
+        if (!io.getPrints().contains(string)) {
+            assertTrue(true);
+        }
     }
-    
+ 
     @Then("system will response with {string}, {string} and {string}")
     public void systemWillResponseWithAnd(String expectedOutput1, String expectedOutput2, String expectedOutput3) {
         assertTrue(io.getPrints().contains(expectedOutput1));
