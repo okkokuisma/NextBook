@@ -27,15 +27,6 @@ public class Tag {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Tag)) {  
-            return false;
-        }
-        Tag other = (Tag) o;
-        return this.tag.equals(other.tag);
-    }
-
-    @Override
     public String toString() {
         return "tag: " + tag;
     }
