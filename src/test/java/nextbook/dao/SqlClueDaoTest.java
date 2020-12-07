@@ -3,25 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nextbook;
+package nextbook.dao;
 
 import java.io.File;
-import nextbook.dao.SqlClueDao;
-import nextbook.dao.DbUtil;
 import nextbook.domain.Book;
 import nextbook.domain.Clue;
 import nextbook.domain.Video;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author okkokuisma
- */
 public class SqlClueDaoTest {
     SqlClueDao dao;
     
