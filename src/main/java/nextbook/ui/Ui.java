@@ -21,7 +21,7 @@ public class Ui {
         commands.put("add", new Add(io, clueService));
         commands.put("list", new List(io, clueService));
         commands.put("update", new Update(io, clueService));
-        commands.put("filter", new Filter(io, clueService));
+        commands.put("filter", new Filter(io, clueService, tagService));
         commands.put("remove", new Remove(io, clueService));
         commands.put("set tag", new SetTag(io, clueService, tagService));
         commands.put("create tag", new CreateTag(io, tagService));
