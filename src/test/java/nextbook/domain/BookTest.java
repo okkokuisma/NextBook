@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nextbook;
+package nextbook.domain;
 
-import nextbook.domain.Book;
 import org.junit.*;
 import static org.junit.Assert.*;
 

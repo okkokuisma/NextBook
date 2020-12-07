@@ -1,5 +1,6 @@
 package nextbook.ui;
 
+import java.util.HashMap;
 import nextbook.domain.ClueService;
 import nextbook.domain.TagService;
 
@@ -10,31 +11,23 @@ public class Ui {
     private IO io;
     private ClueService clueService;
     private TagService tagService;
-    private Command add;
-    private Command list;
-    private Command update;
-    private Command remove;
-    private Command filter;
-    private Command createTag;
-    private Command listTags;
-    private Command setTag;
-    private Command removeTag;
-    private Command deleteTag;
+    private HashMap<String, Command> commands;
 
     public Ui(IO io, ClueService clueService, TagService tagService) {
         this.io = io;
         this.clueService = clueService;
         this.tagService = tagService;
-        this.add = new Add(io, clueService);
-        this.list = new List(io, clueService);
-        this.update = new Update(io, clueService);
-        this.filter = new Filter(io, clueService, tagService);
-        this.remove = new Remove(io, clueService);
-        this.setTag = new SetTag(io, clueService, tagService);
-        this.createTag = new CreateTag(io, tagService);
-        this.listTags = new ListTags(io, tagService);
-        this.removeTag = new RemoveTag(io, clueService, tagService);
-        this.deleteTag = new DeleteTag(io, tagService);
+        this.commands = new HashMap<>();
+        commands.put("add", new Add(io, clueService));
+        commands.put("list", new List(io, clueService));
+        commands.put("update", new Update(io, clueService));
+        commands.put("filter", new Filter(io, clueService));
+        commands.put("remove", new Remove(io, clueService));
+        commands.put("set tag", new SetTag(io, clueService, tagService));
+        commands.put("create tag", new CreateTag(io, tagService));
+        commands.put("list tags", new ListTags(io, tagService));
+        commands.put("remove tag", new RemoveTag(io, clueService, tagService));
+        commands.put("delete tag", new DeleteTag(io, tagService));
     }
 
     public void start() {
@@ -56,45 +49,11 @@ public class Ui {
             if (command.isEmpty()) {
                 break;
             }
-
-            if (command.equals("add")) {
-                add.execute();
+            
+            if (commands.containsKey(command)) {
+                commands.get(command).execute();
             }
 
-            if (command.equals("list")) {
-                list.execute();
-            }
-
-            if (command.equals("update")) {
-                update.execute();
-            }
-
-            if (command.equals("filter")) {
-                filter.execute();
-            }
-          
-            if (command.equals("remove")) {
-                remove.execute();
-            }
-
-            if (command.equals("create tag")) {
-                createTag.execute();
-            }
-
-            if (command.equals("list tags")) {
-                listTags.execute();
-            }
-
-            if (command.equals("set tag")) {
-                setTag.execute();
-            }
-
-            if (command.equals("remove tag")) {
-                removeTag.execute();
-            }
-            if (command.equals("delete tag")) {
-                deleteTag.execute();
-            }
         }
     }
 

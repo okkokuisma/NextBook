@@ -1,5 +1,7 @@
 package nextbook.domain;
 
+import java.util.Objects;
+
 public class Tag {
     private int id;
     private String tag;
@@ -38,5 +40,21 @@ public class Tag {
         return "tag: " + tag;
     }
 
+    @Override
+    public boolean equals(Object compared) {
+        if (this == compared) {
+            return true;
+        }
+        if (compared == null) {
+            return false;
+        }
+        if (!(compared instanceof Tag)) {
+            return false;
+        }
+        Tag comparedTag = (Tag) compared;
+        
+        return this.tag.equals(comparedTag.tag);
+    }
+   
 }
 
