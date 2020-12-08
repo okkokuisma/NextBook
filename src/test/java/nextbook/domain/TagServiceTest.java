@@ -53,6 +53,6 @@ public class TagServiceTest {
     public void settingTag() {
         Video video = new Video("name", "https://www.youtube.com/", 20);
         tagService.setTag(video, tag);
-        }
+    }
     
 }

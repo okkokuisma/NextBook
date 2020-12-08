@@ -20,7 +20,6 @@ public class SqlBlogDao {
     }
     
     public void create(Blog blog) {
-        System.out.println("blog.create");
         try {
             connect();
             PreparedStatement ps = dbconn.prepareStatement("INSERT INTO blogs (name,author,url,comment) VALUES (?,?,?,?)");
