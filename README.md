@@ -33,6 +33,8 @@ Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/Nex
 [Loppuraportti](https://docs.google.com/document/d/1V6KdjEoaFUqgJtcIFHPjoYcdBDURSojHgpu-zJcc4bQ/edit?usp=sharing)
 
 
+
+
 [Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
 
 
