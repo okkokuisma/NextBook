@@ -29,6 +29,9 @@ Ominaisuus on määritelty ja suunniteltu. Ominaisuus on ohjelmoitu sekä testat
 ## Käyttöohje
 Käyttöohjeet ovat tiedostossa [Käyttöohje](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/kayttoohje.md).
 
+## Raportti
+[Loppuraportti](https://docs.google.com/document/d/1V6KdjEoaFUqgJtcIFHPjoYcdBDURSojHgpu-zJcc4bQ/edit?usp=sharing)
+
 
 [Luokkakaavio](https://github.com/okkokuisma/NextBook/blob/main/dokumentaatio/Luokkakaavio.jpg)
 
